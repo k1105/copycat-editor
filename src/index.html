@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Copycat Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="header">
+    <h1>Copycat Editor</h1>
+    <div class="header-right">
+      <span id="code-type-badge" class="code-type-badge hidden"></span>
+      <button id="settings-btn" class="header-btn">Settings</button>
+    </div>
+  </header>
+
+  <!-- コード入力モード -->
+  <div id="input-mode">
+    <div class="input-container">
+      <h2>写経したいコードを貼り付けてください</h2>
+      <textarea id="code-input" placeholder="ここにp5.jsのコードをペースト..."></textarea>
+      <button id="start-btn" class="primary-btn">開始</button>
+    </div>
+  </div>
+
+  <!-- 解析中 -->
+  <div id="loading-mode" class="hidden">
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>コードを解析中...</p>
+    </div>
+  </div>
+
+  <!-- 写経モード -->
+  <div id="editor-mode" class="hidden">
+    <div class="editor-layout">
+      <!-- 左ペイン：元コード -->
+      <div class="pane left-pane">
+        <div class="pane-header">
+          <span class="pane-title">元コード</span>
+          <button class="run-btn" data-pane="left">&#9654; 実行</button>
+        </div>
+        <div class="pane-body">
+          <div id="left-editor" class="editor-area"></div>
+          <div class="inline-preview hidden" data-pane="left">
+            <div class="preview-error-inline hidden"></div>
+            <iframe class="inline-preview-frame"></iframe>
+          </div>
+        </div>
+        <div id="explanation" class="explanation"></div>
+        <div class="step-nav">
+          <button id="prev-btn" class="nav-btn" disabled>&#9664; 前へ</button>
+          <span id="step-indicator">Step 1 / 1</span>
+          <button id="next-btn" class="nav-btn">次へ &#9654;</button>
+        </div>
+      </div>
+
+      <!-- 右ペイン：写経用 -->
+      <div class="pane right-pane">
+        <div class="pane-header">
+          <span class="pane-title">写経スペース</span>
+          <button class="run-btn" data-pane="right">&#9654; 実行</button>
+        </div>
+        <div class="pane-body">
+          <div id="right-editor" class="editor-area"></div>
+          <div class="inline-preview hidden" data-pane="right">
+            <div class="preview-error-inline hidden"></div>
+            <iframe class="inline-preview-frame"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settingsモーダル -->
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Settings</h2>
+      <label for="api-key-input">Anthropic API Key</label>
+      <input type="password" id="api-key-input" placeholder="sk-ant-..." />
+      <div class="modal-actions">
+        <button id="save-key-btn" class="primary-btn">保存</button>
+        <button id="close-modal-btn" class="secondary-btn">閉じる</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
