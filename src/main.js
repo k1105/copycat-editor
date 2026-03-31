@@ -2,7 +2,7 @@ import { createEditor, getEditorContent, setEditorContent } from './editor.js';
 import { analyzeCode } from './analyzer.js';
 import { initSteps, nextStep, prevStep, getCurrentCode } from './steps.js';
 import { togglePreview, initPreview, detectCodeType } from './preview.js';
-import { initSettings, getApiKey } from './settings.js';
+import { initSettings, getApiKey, getProvider } from './settings.js';
 import { debugSamples } from './debug-data.js';
 
 // DOM elements
@@ -83,7 +83,7 @@ startBtn.addEventListener('click', async () => {
   showMode('loading');
 
   try {
-    const steps = await analyzeCode(code, apiKey);
+    const steps = await analyzeCode(code, apiKey, getProvider());
     showMode('editor');
     initEditors();
     initSteps(steps, leftEditor, onStepUpdate);

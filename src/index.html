@@ -77,8 +77,19 @@
   <div id="settings-modal" class="modal hidden">
     <div class="modal-content">
       <h2>Settings</h2>
-      <label for="api-key-input">Anthropic API Key</label>
-      <input type="password" id="api-key-input" placeholder="sk-ant-..." />
+      <label for="provider-select">APIプロバイダー</label>
+      <select id="provider-select">
+        <option value="anthropic">Anthropic (Claude)</option>
+        <option value="gemini">Google (Gemini)</option>
+      </select>
+      <div id="anthropic-key-group">
+        <label for="api-key-input">Anthropic API Key</label>
+        <input type="password" id="api-key-input" placeholder="sk-ant-..." />
+      </div>
+      <div id="gemini-key-group" class="hidden">
+        <label for="gemini-key-input">Gemini API Key</label>
+        <input type="password" id="gemini-key-input" placeholder="AIza..." />
+      </div>
       <div class="modal-actions">
         <button id="save-key-btn" class="primary-btn">保存</button>
         <button id="close-modal-btn" class="secondary-btn">閉じる</button>
