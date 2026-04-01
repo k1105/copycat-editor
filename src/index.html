@@ -53,6 +53,7 @@
           <button id="prev-btn" class="nav-btn" disabled>&#9664; 前へ</button>
           <span id="step-indicator">Step 1 / 1</span>
           <button id="next-btn" class="nav-btn">次へ &#9654;</button>
+          <button id="finish-btn" class="primary-btn hidden">完了</button>
         </div>
       </div>
 
@@ -69,6 +70,35 @@
             <iframe class="inline-preview-frame"></iframe>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- フィードバックモーダル -->
+  <div id="feedback-modal" class="modal hidden">
+    <div class="modal-content feedback-modal-content">
+      <h2>コーディング体験のフィードバック</h2>
+      <p class="feedback-subtitle">この写経体験はいかがでしたか？</p>
+
+      <div class="feedback-section">
+        <label>評価</label>
+        <div class="star-rating" id="star-rating">
+          <button class="star" data-value="1">&#9733;</button>
+          <button class="star" data-value="2">&#9733;</button>
+          <button class="star" data-value="3">&#9733;</button>
+          <button class="star" data-value="4">&#9733;</button>
+          <button class="star" data-value="5">&#9733;</button>
+        </div>
+      </div>
+
+      <div class="feedback-section">
+        <label for="feedback-text">コメント（任意）</label>
+        <textarea id="feedback-text" placeholder="ステップの分け方、解説のわかりやすさなど..."></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button id="send-feedback-btn" class="primary-btn" disabled>送信</button>
+        <button id="skip-feedback-btn" class="secondary-btn">スキップ</button>
       </div>
     </div>
   </div>

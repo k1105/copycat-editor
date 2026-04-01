@@ -4,6 +4,7 @@ import { initSteps, nextStep, prevStep, getCurrentCode } from './steps.js';
 import { togglePreview, initPreview, detectCodeType } from './preview.js';
 import { initSettings, getApiKey, getProvider, getModel } from './settings.js';
 import { debugSamples } from './debug-data.js';
+import { showFeedback } from './feedback.js';
 
 // DOM elements
 const inputMode = document.getElementById('input-mode');
@@ -15,6 +16,7 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const stepIndicator = document.getElementById('step-indicator');
 const explanation = document.getElementById('explanation');
+const finishBtn = document.getElementById('finish-btn');
 const runBtnLeft = document.querySelector('.run-btn[data-pane="left"]');
 const runBtnRight = document.querySelector('.run-btn[data-pane="right"]');
 
@@ -25,6 +27,10 @@ initPreview();
 // Create editors (lazy, after mode switch)
 let leftEditor = null;
 let rightEditor = null;
+
+// Store for feedback
+let currentInputCode = '';
+let currentSteps = [];
 
 function initEditors() {
   if (!leftEditor) {
@@ -55,6 +61,7 @@ function onStepUpdate(info) {
   explanation.textContent = info.explanation;
   prevBtn.disabled = !info.hasPrev;
   nextBtn.disabled = !info.hasNext;
+  finishBtn.classList.toggle('hidden', info.hasNext);
 }
 
 // Debug mode: ?debug or ?debug=three or ?debug=webgl
@@ -63,6 +70,8 @@ const debugParam = new URLSearchParams(location.search).get('debug');
 if (debugParam !== null) {
   const sampleKey = debugParam || 'p5';
   const steps = debugSamples[sampleKey] || debugSamples.p5;
+  currentInputCode = steps[steps.length - 1].code;
+  currentSteps = steps;
   showMode('editor');
   initEditors();
   initSteps(steps, leftEditor, onStepUpdate);
@@ -84,6 +93,8 @@ startBtn.addEventListener('click', async () => {
 
   try {
     const steps = await analyzeCode(code, apiKey, getProvider(), getModel());
+    currentInputCode = code;
+    currentSteps = steps;
     showMode('editor');
     initEditors();
     initSteps(steps, leftEditor, onStepUpdate);
@@ -98,6 +109,11 @@ startBtn.addEventListener('click', async () => {
 // Step navigation
 prevBtn.addEventListener('click', prevStep);
 nextBtn.addEventListener('click', nextStep);
+
+// Finish → show feedback
+finishBtn.addEventListener('click', () => {
+  showFeedback(currentInputCode, currentSteps);
+});
 
 // Preview buttons
 runBtnLeft.addEventListener('click', () => {
