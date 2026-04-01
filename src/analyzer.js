@@ -1,8 +1,8 @@
-export async function analyzeCode(code, apiKey, provider = 'anthropic') {
+export async function analyzeCode(code, apiKey, provider, model) {
   const response = await fetch('/api/analyze', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ code, apiKey, provider }),
+    body: JSON.stringify({ code, apiKey, provider, model }),
   });
 
   const data = await response.json();

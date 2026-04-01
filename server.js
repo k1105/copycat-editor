@@ -3,6 +3,7 @@ import { createServer as createViteServer } from 'vite';
 import { generateText } from 'ai';
 import { createAnthropic } from '@ai-sdk/anthropic';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
 
 const SYSTEM_PROMPT = `あなたはコード教育の専門家です。以下のコードを、初学者が段階的に写経できるようにステップに分解してください。
 
@@ -26,13 +27,17 @@ const SYSTEM_PROMPT = `あなたはコード教育の専門家です。以下の
 }`;
 
 const PROVIDERS = {
-  anthropic: (apiKey) => {
+  anthropic: (apiKey, model) => {
     const provider = createAnthropic({ apiKey });
-    return provider('claude-sonnet-4-20250514');
+    return provider(model);
   },
-  gemini: (apiKey) => {
+  gemini: (apiKey, model) => {
     const provider = createGoogleGenerativeAI({ apiKey });
-    return provider('gemini-2.5-flash');
+    return provider(model);
+  },
+  openai: (apiKey, model) => {
+    const provider = createOpenAI({ apiKey });
+    return provider(model);
   },
 };
 
@@ -42,10 +47,10 @@ async function start() {
 
   // API endpoint
   app.post('/api/analyze', async (req, res) => {
-    const { code, apiKey, provider } = req.body;
+    const { code, apiKey, provider, model } = req.body;
 
-    if (!code || !apiKey || !provider) {
-      return res.status(400).json({ error: 'code, apiKey, provider は必須です' });
+    if (!code || !apiKey || !provider || !model) {
+      return res.status(400).json({ error: 'code, apiKey, provider, model は必須です' });
     }
 
     const createModel = PROVIDERS[provider];
@@ -55,7 +60,7 @@ async function start() {
 
     try {
       const { text } = await generateText({
-        model: createModel(apiKey),
+        model: createModel(apiKey, model),
         system: SYSTEM_PROMPT,
         prompt: `以下のコードをステップに分解してください：\n\n\`\`\`\n${code}\n\`\`\``,
         maxTokens: 8192,

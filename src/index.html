@@ -81,7 +81,10 @@
       <select id="provider-select">
         <option value="anthropic">Anthropic (Claude)</option>
         <option value="gemini">Google (Gemini)</option>
+        <option value="openai">OpenAI (ChatGPT)</option>
       </select>
+      <label for="model-select">モデル</label>
+      <select id="model-select"></select>
       <div id="anthropic-key-group">
         <label for="api-key-input">Anthropic API Key</label>
         <input type="password" id="api-key-input" placeholder="sk-ant-..." />
@@ -89,6 +92,10 @@
       <div id="gemini-key-group" class="hidden">
         <label for="gemini-key-input">Gemini API Key</label>
         <input type="password" id="gemini-key-input" placeholder="AIza..." />
+      </div>
+      <div id="openai-key-group" class="hidden">
+        <label for="openai-key-input">OpenAI API Key</label>
+        <input type="password" id="openai-key-input" placeholder="sk-..." />
       </div>
       <div class="modal-actions">
         <button id="save-key-btn" class="primary-btn">保存</button>
