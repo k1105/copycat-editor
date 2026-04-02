@@ -75,7 +75,8 @@ export default async function handler(req, res) {
 
     res.json(parsed);
   } catch (err) {
-    console.error('Analysis error:', err.message);
-    res.status(502).json({ error: err.message });
+    console.error('Analysis error:', err);
+    const message = err.data?.error?.message || err.message || 'Unknown error';
+    res.status(502).json({ error: message });
   }
 }
