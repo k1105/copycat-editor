@@ -366,6 +366,38 @@ body {
   color: #999999;
 }
 
+/* Autocomplete dropdown */
+.cm-tooltip-autocomplete {
+  background: #252526 !important;
+  border: 1px solid #3c3c3c !important;
+}
+
+.cm-tooltip-autocomplete ul li {
+  color: #cccccc !important;
+}
+
+.cm-tooltip-autocomplete ul li[aria-selected] {
+  background: #094771 !important;
+  color: #ffffff !important;
+}
+
+.cm-tooltip-autocomplete .cm-completionLabel {
+  color: #cccccc !important;
+}
+
+.cm-tooltip-autocomplete .cm-completionDetail {
+  color: #808080 !important;
+  font-style: italic;
+}
+
+.cm-tooltip-autocomplete ul li[aria-selected] .cm-completionLabel {
+  color: #ffffff !important;
+}
+
+.cm-tooltip-autocomplete ul li[aria-selected] .cm-completionDetail {
+  color: #a0c4e0 !important;
+}
+
 /* Diff highlight */
 .cm-added-line {
   background-color: rgba(40, 167, 69, 0.15) !important;

@@ -1,4 +1,4 @@
-import { createEditor, getEditorContent, setEditorContent, setErrorHighlight } from './editor.js';
+import { createEditor, getEditorContent, setEditorContent, setErrorHighlight, setCodeType } from './editor.js';
 import { analyzeCode } from './analyzer.js';
 import { initSteps, nextStep, prevStep, getCurrentCode } from './steps.js';
 import { togglePreview, initPreview, detectCodeType } from './preview.js';
@@ -53,6 +53,9 @@ function showCodeTypeBadge(code) {
   const type = detectCodeType(code);
   badge.textContent = TYPE_LABELS[type] || type;
   badge.className = `code-type-badge type-${type}`;
+  if (rightEditor) {
+    setCodeType(rightEditor, type);
+  }
 }
 
 // Step callback

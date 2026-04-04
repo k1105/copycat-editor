@@ -1,9 +1,11 @@
 import { EditorView, keymap, lineNumbers, highlightActiveLine, Decoration } from '@codemirror/view';
-import { EditorState, StateField, StateEffect } from '@codemirror/state';
+import { EditorState, StateField, StateEffect, Compartment } from '@codemirror/state';
 import { javascript } from '@codemirror/lang-javascript';
 import { defaultKeymap, history, historyKeymap } from '@codemirror/commands';
 import { syntaxHighlighting, HighlightStyle } from '@codemirror/language';
+import { autocompletion, acceptCompletion } from '@codemirror/autocomplete';
 import { tags } from '@lezer/highlight';
+import { getCompletionSource } from './completions.js';
 
 // Effect: { added: Set<number>, modified: Set<number> } (1-based line numbers)
 export const setDiffHighlight = StateEffect.define();
@@ -100,6 +102,8 @@ const baseTheme = EditorView.theme({
   '.cm-matchingBracket': { color: '#fff', backgroundColor: 'rgba(99, 109, 131, 0.4)' },
 });
 
+const autocompleteCompartment = new Compartment();
+
 function createExtensions(readOnly) {
   const exts = [
     lineNumbers(),
@@ -107,10 +111,11 @@ function createExtensions(readOnly) {
     history(),
     javascript(),
     syntaxHighlighting(darkHighlight),
-    keymap.of([...defaultKeymap, ...historyKeymap]),
+    keymap.of([{ key: 'Tab', run: acceptCompletion }, ...defaultKeymap, ...historyKeymap]),
     baseTheme,
     highlightField,
     errorField,
+    autocompleteCompartment.of([]),
   ];
   if (readOnly) {
     exts.push(EditorState.readOnly.of(true));
@@ -125,6 +130,17 @@ export function createEditor(parent, readOnly = false) {
   });
   const view = new EditorView({ state, parent });
   return view;
+}
+
+export function setCodeType(view, codeType) {
+  view.dispatch({
+    effects: autocompleteCompartment.reconfigure(
+      autocompletion({
+        override: [getCompletionSource(codeType)],
+        activateOnTyping: true,
+      })
+    ),
+  });
 }
 
 export function setEditorContent(view, content) {
