@@ -7,10 +7,7 @@ import { debugSamples } from './debug-data.js';
 import { showFeedback } from './feedback.js';
 
 // DOM elements
-const inputMode = document.getElementById('input-mode');
-const loadingMode = document.getElementById('loading-mode');
-const editorMode = document.getElementById('editor-mode');
-const codeInput = document.getElementById('code-input');
+const loadingOverlay = document.getElementById('loading-overlay');
 const startBtn = document.getElementById('start-btn');
 const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
@@ -19,31 +16,43 @@ const explanation = document.getElementById('explanation');
 const finishBtn = document.getElementById('finish-btn');
 const runBtnLeft = document.querySelector('.run-btn[data-pane="left"]');
 const runBtnRight = document.querySelector('.run-btn[data-pane="right"]');
+const rightPaneActions = document.getElementById('right-pane-actions');
+const stepNav = document.querySelector('.step-nav');
 
 // Init modules
 initSettings();
 initPreview();
 
-// Create editors (lazy, after mode switch)
-let leftEditor = null;
-let rightEditor = null;
+// Both editors are created immediately
+const leftEditor = createEditor(document.getElementById('left-editor'), false);
+const rightEditor = createEditor(document.getElementById('right-editor'), false);
+
+// Initial placeholder content
+setEditorContent(leftEditor, '// ここに写経したいコードを貼り付けてください\n');
+setEditorContent(rightEditor, [
+  '//    /\\_/\\',
+  '//   ( o.o )',
+  '//    > ^ <',
+  '//   /|   |\\',
+  '//  (_|   |_)',
+  '//',
+  '//  Copycat Editor',
+  '//  左側にコードを貼り付けて、写経を始めよう',
+  '',
+].join('\n'));
 
 // Store for feedback
 let currentInputCode = '';
 let currentSteps = [];
 
-function initEditors() {
-  if (!leftEditor) {
-    leftEditor = createEditor(document.getElementById('left-editor'), true);
-    rightEditor = createEditor(document.getElementById('right-editor'), false);
-  }
-}
-
-// Show mode
-function showMode(mode) {
-  inputMode.classList.toggle('hidden', mode !== 'input');
-  loadingMode.classList.toggle('hidden', mode !== 'loading');
-  editorMode.classList.toggle('hidden', mode !== 'editor');
+// After analysis: left becomes read-only, show controls, clear right editor
+function switchToStepMode() {
+  startBtn.classList.add('hidden');
+  runBtnLeft.classList.remove('hidden');
+  rightPaneActions.classList.remove('hidden');
+  explanation.classList.remove('hidden');
+  stepNav.classList.remove('hidden');
+  setEditorContent(rightEditor, '');
 }
 
 const TYPE_LABELS = { p5: 'p5.js', three: 'Three.js', webgl: 'WebGL' };
@@ -53,9 +62,7 @@ function showCodeTypeBadge(code) {
   const type = detectCodeType(code);
   badge.textContent = TYPE_LABELS[type] || type;
   badge.className = `code-type-badge type-${type}`;
-  if (rightEditor) {
-    setCodeType(rightEditor, type);
-  }
+  setCodeType(rightEditor, type);
 }
 
 // Step callback
@@ -75,15 +82,14 @@ if (debugParam !== null) {
   const steps = debugSamples[sampleKey] || debugSamples.p5;
   currentInputCode = steps[steps.length - 1].code;
   currentSteps = steps;
-  showMode('editor');
-  initEditors();
+  switchToStepMode();
   initSteps(steps, leftEditor, onStepUpdate);
   showCodeTypeBadge(steps[0].code);
 }
 
 // Start button
 startBtn.addEventListener('click', async () => {
-  const code = codeInput.value.trim();
+  const code = getEditorContent(leftEditor).trim();
   if (!code) return;
 
   const apiKey = getApiKey();
@@ -92,20 +98,20 @@ startBtn.addEventListener('click', async () => {
     return;
   }
 
-  showMode('loading');
+  loadingOverlay.classList.remove('hidden');
 
   try {
     const steps = await analyzeCode(code, apiKey, getProvider(), getModel());
     currentInputCode = code;
     currentSteps = steps;
-    showMode('editor');
-    initEditors();
+    loadingOverlay.classList.add('hidden');
+    switchToStepMode();
     initSteps(steps, leftEditor, onStepUpdate);
     showCodeTypeBadge(steps[0].code);
   } catch (err) {
     console.error(err);
+    loadingOverlay.classList.add('hidden');
     alert(`解析に失敗しました: ${err.message}`);
-    showMode('input');
   }
 });
 
@@ -121,7 +127,6 @@ finishBtn.addEventListener('click', () => {
 // Check button: diff user code vs correct code
 const checkBtn = document.getElementById('check-btn');
 checkBtn.addEventListener('click', () => {
-  if (!rightEditor) return;
   const correctCode = getCurrentCode();
   const userCode = getEditorContent(rightEditor);
   const correctLines = correctCode.split('\n');
@@ -130,7 +135,6 @@ checkBtn.addEventListener('click', () => {
 
   const maxLen = Math.max(correctLines.length, userLines.length);
   for (let i = 0; i < maxLen; i++) {
-    // 空白の差異は無視して比較（タブ/スペース/インデント幅の違い）
     const normalize = (s) => (s || '').replace(/\s+/g, ' ').trim();
     const correct = normalize(correctLines[i]);
     const user = normalize(userLines[i]);
@@ -155,5 +159,5 @@ runBtnLeft.addEventListener('click', () => {
 });
 
 runBtnRight.addEventListener('click', () => {
-  togglePreview('right', () => rightEditor ? getEditorContent(rightEditor) : '');
+  togglePreview('right', () => getEditorContent(rightEditor));
 });
