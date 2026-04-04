@@ -7,9 +7,11 @@ import { tags } from '@lezer/highlight';
 
 // Effect: { added: Set<number>, modified: Set<number> } (1-based line numbers)
 export const setDiffHighlight = StateEffect.define();
+export const setErrorHighlight = StateEffect.define();
 
 const addedLineDeco = Decoration.line({ class: 'cm-added-line' });
 const modifiedLineDeco = Decoration.line({ class: 'cm-modified-line' });
+const errorLineDeco = Decoration.line({ class: 'cm-error-line' });
 
 const highlightField = StateField.define({
   create() {
@@ -29,6 +31,31 @@ const highlightField = StateField.define({
         for (const ln of modified) {
           if (ln >= 1 && ln <= doc.lines) {
             builder.push(modifiedLineDeco.range(doc.line(ln).from));
+          }
+        }
+        builder.sort((a, b) => a.from - b.from);
+        return Decoration.set(builder);
+      }
+    }
+    return decorations;
+  },
+  provide: (f) => EditorView.decorations.from(f),
+});
+
+const errorField = StateField.define({
+  create() {
+    return Decoration.none;
+  },
+  update(decorations, tr) {
+    for (const e of tr.effects) {
+      if (e.is(setErrorHighlight)) {
+        const lines = e.value; // Set<number> (1-based)
+        if (lines.size === 0) return Decoration.none;
+        const builder = [];
+        const doc = tr.state.doc;
+        for (const ln of lines) {
+          if (ln >= 1 && ln <= doc.lines) {
+            builder.push(errorLineDeco.range(doc.line(ln).from));
           }
         }
         builder.sort((a, b) => a.from - b.from);
@@ -66,8 +93,9 @@ const baseTheme = EditorView.theme({
   '.cm-content': { color: '#abb2bf' },
   '.cm-gutters': { backgroundColor: '#16213e', color: '#636d83', borderRight: '1px solid #0f3460' },
   '.cm-activeLineGutter': { backgroundColor: '#0f3460' },
-  '.cm-activeLine': { backgroundColor: 'rgba(15, 52, 96, 0.3)' },
-  '.cm-cursor': { borderLeftColor: '#528bff' },
+  '.cm-activeLine': { backgroundColor: 'rgba(255, 255, 255, 0.06)' },
+  '.cm-cursor, .cm-dropCursor': { borderLeftColor: '#fff !important', borderLeftWidth: '2px !important' },
+  '&.cm-focused .cm-cursor': { borderLeftColor: '#fff !important', borderLeftWidth: '2px !important' },
   '&.cm-focused .cm-selectionBackground, .cm-selectionBackground': { backgroundColor: 'rgba(56, 117, 214, 0.3)' },
   '.cm-matchingBracket': { color: '#fff', backgroundColor: 'rgba(99, 109, 131, 0.4)' },
 });
@@ -82,6 +110,7 @@ function createExtensions(readOnly) {
     keymap.of([...defaultKeymap, ...historyKeymap]),
     baseTheme,
     highlightField,
+    errorField,
   ];
   if (readOnly) {
     exts.push(EditorState.readOnly.of(true));

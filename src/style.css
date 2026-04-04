@@ -236,6 +236,26 @@ body {
   letter-spacing: 0.5px;
 }
 
+.pane-header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.check-btn {
+  background: #2d2d2d;
+  color: #4ec9b0;
+  border: 1px solid #3c3c3c;
+  padding: 3px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.check-btn:hover {
+  background: #1a4a3a;
+  border-color: #4ec9b0;
+}
+
 .run-btn {
   background: #2d2d2d;
   color: #cccccc;
@@ -281,6 +301,16 @@ body {
 
 .editor-area .cm-scroller {
   overflow: auto;
+}
+
+/* カーソル視認性の強制 */
+.cm-editor .cm-cursor,
+.cm-editor .cm-dropCursor {
+  border-left: 2px solid #fff !important;
+}
+
+.cm-editor .cm-content {
+  caret-color: #fff !important;
 }
 
 /* Explanation */
@@ -343,6 +373,11 @@ body {
 
 .cm-modified-line {
   background-color: rgba(86, 156, 214, 0.15) !important;
+}
+
+.cm-error-line {
+  background-color: rgba(255, 80, 80, 0.25) !important;
+  outline: 1px solid rgba(255, 80, 80, 0.4);
 }
 
 /* Inline preview (overlays on top of editor within each pane) */

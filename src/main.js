@@ -1,4 +1,4 @@
-import { createEditor, getEditorContent, setEditorContent } from './editor.js';
+import { createEditor, getEditorContent, setEditorContent, setErrorHighlight } from './editor.js';
 import { analyzeCode } from './analyzer.js';
 import { initSteps, nextStep, prevStep, getCurrentCode } from './steps.js';
 import { togglePreview, initPreview, detectCodeType } from './preview.js';
@@ -113,6 +113,37 @@ nextBtn.addEventListener('click', nextStep);
 // Finish → show feedback
 finishBtn.addEventListener('click', () => {
   showFeedback(currentInputCode, currentSteps);
+});
+
+// Check button: diff user code vs correct code
+const checkBtn = document.getElementById('check-btn');
+checkBtn.addEventListener('click', () => {
+  if (!rightEditor) return;
+  const correctCode = getCurrentCode();
+  const userCode = getEditorContent(rightEditor);
+  const correctLines = correctCode.split('\n');
+  const userLines = userCode.split('\n');
+  const errorLines = new Set();
+
+  const maxLen = Math.max(correctLines.length, userLines.length);
+  for (let i = 0; i < maxLen; i++) {
+    // 空白の差異は無視して比較（タブ/スペース/インデント幅の違い）
+    const normalize = (s) => (s || '').replace(/\s+/g, ' ').trim();
+    const correct = normalize(correctLines[i]);
+    const user = normalize(userLines[i]);
+    if (correct !== user) {
+      errorLines.add(i + 1);
+    }
+  }
+
+  rightEditor.dispatch({ effects: setErrorHighlight.of(errorLines) });
+
+  if (errorLines.size === 0) {
+    checkBtn.textContent = '\u2713 OK!';
+  } else {
+    checkBtn.textContent = `\u2713 ${errorLines.size}箇所`;
+  }
+  setTimeout(() => { checkBtn.textContent = '\u2713 チェック'; }, 2000);
 });
 
 // Preview buttons

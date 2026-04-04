@@ -1,0 +1,3026 @@
+Delivered-To: kntymgs1105@gmail.com
+Received: by 2002:a05:6500:2487:b0:2f9:4b2a:de08 with SMTP id cf7csp982701lqb;
+        Thu, 2 Apr 2026 10:10:17 -0700 (PDT)
+X-Received: by 2002:ac8:5785:0:b0:50b:2e8c:6ae0 with SMTP id d75a77b69052e-50d62ad5287mr1270551cf.45.1775149817551;
+        Thu, 02 Apr 2026 10:10:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1775149817; cv=none;
+        d=google.com; s=arc-20240605;
+        b=SdVeMwXuZiGAvEo37AZGoijysQ3gTtDDSKoHuioe/BdswPvxSqE38KcGZSeIn2kFxC
+         EeNuPgLf9LCh9CGZ/VorOpznMH3zbkh3kHE/9mpwlQ9borEAXkB3n5nq+Q09byTJyIci
+         AuVKtpk6jPPSOmDWj2enplqgUPpzOEQTelQ3ZH1BN8/H2HIjXPzyy0SME2umRXYTpFnO
+         R85iclgbCJUju8SKmEkY9RyEnPqJ0q8sa/SOQv8uUBFWpUg17seMAabPoIiyQgUKfOpK
+         38r7zKTWa0hhGyDj1QY0gz889WHnIpAJYLPu1jbBKUKdTx7vNA2ayJkzTXON4wzlFhTh
+         ZglQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=feedback-id:mime-version:date:message-id:subject:to:from
+         :dkim-signature:dkim-signature;
+        bh=XWKdKqXJznx49g+UssRduCMVEGsOG8dyrz7mo4sZaTk=;
+        fh=c1SBBTNtP32nj5+yrHxFPpDOXcUF/mpSVJREBZqEXBg=;
+        b=T8uXlw4T99TKBf3roJOJIco9DeatFcVLVVReBFQHX7MMmiDgxpcb3gBJg7rm1WoFE7
+         QosT1TxJt8+3aPeG/tGRwTnlbIXdYxhO8zDLBXORtRB2cEHtl2hIPqacRXEtArcOpLWS
+         UTsrzWE7ouHFDqTrrK/JcKDHv+vUL212fNYCEsAAjS54iKP2SXuBkHRper0T7mBFE/oc
+         oFngIYsYpOvETGD9EB/6vWm5fOzf/JquOjpPUV/+yBZ31SvMRqM5e4ptfrS/cYOJo1HE
+         GWswJ4+iD704lr1181RDG93+d0kuQPchV487mWYWYr8A9K2itktZ2qLSUt3F7nIwAOhX
+         Jysw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@resend.dev header.s=resend header.b=RQszlVLz;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=hyWiA3um;
+       spf=pass (google.com: domain of 0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev designates 54.240.9.30 as permitted sender) smtp.mailfrom=0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=resend.dev
+Return-Path: <0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev>
+Received: from a9-30.smtp-out.amazonses.com (a9-30.smtp-out.amazonses.com. [54.240.9.30])
+        by mx.google.com with ESMTPS id 6a1803df08f44-8a5973e0fe2si50499246d6.285.2026.04.02.10.10.17
+        for <kntymgs1105@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Apr 2026 10:10:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev designates 54.240.9.30 as permitted sender) client-ip=54.240.9.30;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@resend.dev header.s=resend header.b=RQszlVLz;
+       dkim=pass header.i=@amazonses.com header.s=224i4yxa5dv7c2xz3womw6peuasteono header.b=hyWiA3um;
+       spf=pass (google.com: domain of 0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev designates 54.240.9.30 as permitted sender) smtp.mailfrom=0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@send.resend.dev;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=resend.dev
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple; s=resend;
+	d=resend.dev; t=1775149817;
+	h=From:To:Subject:Message-ID:Date:MIME-Version:Content-Type;
+	bh=2DTvcnKSusOLd4gc4UZf/UhC/TfJp2RZXg3ugSR9BJI=;
+	b=RQszlVLzsqNQpw0vqyBKrr/R2SdzY4UXiQ8ulg+H9+it9cURDvaiyBdCf/ED3XFv
+	mRQXmJ+3FGrSJsREErqks5ZzkSUve/2MAKSyRmCtOakGP1vNy0Uo1gCip6hkyZb3YkP
+	NIupMyfIusgII1suOxxNA9ygUzzP0QI+y8UmAkHU=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=224i4yxa5dv7c2xz3womw6peuasteono; d=amazonses.com; t=1775149817;
+	h=From:To:Subject:Message-ID:Date:MIME-Version:Content-Type:Feedback-ID;
+	bh=2DTvcnKSusOLd4gc4UZf/UhC/TfJp2RZXg3ugSR9BJI=;
+	b=hyWiA3umdhyMBWdanU/j1sqXMR5Rs147K6iFDQRWDVj45AAjsHmMnqPX4FgGegdb
+	xMeZDq4w0dvyXzg33R+9ULbkYyPr/PDHW/Zsh339sNjxWG6pRkTsymKOpyUVKRZBEOU
+	O4t0+RGu+cYNEL9lw/BhUHpfwG5LHg3gWuSBoHs0=
+From: Copycat Editor <onboarding@resend.dev>
+To: kntymgs1105@gmail.com
+Subject: =?UTF-8?Q?=5BCopycat_Feedback=5D_=E2=98=85?=
+ =?UTF-8?Q?=E2=98=85=E2=98=85=E2=98=86=E2=98=86?=
+Message-ID: <0100019d4f2c9c35-8d4f2fba-fbb9-4a25-b82a-f174926108c5-000000@email.amazonses.com>
+Date: Thu, 2 Apr 2026 17:10:16 +0000
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--_NmP-5e3354c7616d0b86-Part_1"
+Feedback-ID: :1.us-east-1.Pm4sucivfSMnsZR93/a+Hm2IulaA7kNCZG1II+5uaZYg9lPNDlrQ7xUNsvhM0M8azbYt3j50QKbRHgu36jTFNhTqfolLMBCpf8+6Q9XTd6jYtsOVG97u7J1pzWjt3oabZQxz32BcaFOfNOAva8p3sD/sCCQyIHpg6ovgjDbv5rw=:1.us-east-1.pAEstvQcjyhQNKGKcgSlzI7SVR8ZSG5wSmKwiz/A8Dg=:AmazonSES
+X-SES-Outgoing: 2026.04.02-54.240.9.30
+
+----_NmP-5e3354c7616d0b86-Part_1
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+=E3=83=95=E3=82=A3=E3=83=BC=E3=83=89=E3=83=90=E3=83=83=E3=82=AF
+
+=E8=A9=95=E4=BE=A1: =E2=98=85=E2=98=85=E2=98=85=E2=98=86=E2=98=86 (3/5)
+
+=E3=82=B3=E3=83=A1=E3=83=B3=E3=83=88: =E3=82=84=E3=81=A3=E3=81=A6=
+=E3=81=BF=E3=81=9F=E6=89=80=E6=84=9F=E3=80=81=E6=95=B0=E5=AD=A6=E7=9A=84=
+=E3=81=AB=E9=AB=98=E5=BA=A6=E3=81=AA=E8=A9=B1=E3=81=AB=E3=81=AA=E3=81=A3=
+=E3=81=A6=E3=81=8F=E3=82=8B=E3=81=A8=E8=AA=AC=E6=98=8E=E3=81=8C=E8=96=84=
+=E3=81=8B=E3=81=A3=E3=81=9F=E3=82=8A=E3=80=81=E5=89=8D=E6=8F=90=E3=81=8C=
+=E3=82=8F=E3=81=8B=E3=82=89=E3=81=AA=E3=81=8F=E3=81=A6=E7=B5=90=E5=B1=80=
+=E8=84=B3=E6=AD=BB=E3=81=AE=E5=86=99=E7=B5=8C=E3=82=B2=E3=83=BC=E3=83=A0=
+=E3=81=AB=E3=81=AA=E3=81=A3=E3=81=A6=E3=81=97=E3=81=BE=E3=81=86=E3=81=A8=
+=E3=81=93=E3=82=8D=E3=81=AF=E3=81=82=E3=81=A3=E3=81=9F=E3=81=91=E3=81=A9=
+=E3=80=81=E3=81=9D=E3=82=8C=E3=81=A7=E3=82=82=E6=A7=8B=E9=80=A0=E5=8C=96=
+=E3=81=95=E3=82=8C=E3=81=A6=E8=AA=AC=E6=98=8E=E3=81=95=E3=82=8C=E3=82=8B=
+=E3=81=AE=E3=81=AF=E5=AC=89=E3=81=97=E3=81=84=E3=80=82=E3=82=B9=E3=83=86=
+=E3=83=83=E3=83=973-4=E3=81=8F=E3=82=89=E3=81=84=E3=81=AE=E6=B5=81=
+=E3=82=8C=E3=81=A7=E3=81=AF=E3=80=81=E3=81=BE=E3=81=9A=E3=83=99=E3=83=BC=
+=E3=82=B9=E3=81=A7=E3=82=B9=E3=82=B1=E3=83=BC=E3=83=AB=E3=81=8C=E5=A4=89=
+=E5=8C=96=E3=81=97=E3=81=A6=E3=81=84=E3=81=8F=E3=82=A2=E3=83=8B=E3=83=A1=
+=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=E5=AE=9F=E8=A3=85=E3=81=97=
+=E3=80=81=E6=AC=A1=E3=81=AB=E3=81=9D=E3=81=93=E3=81=AB=E3=83=95=E3=83=A9=
+=E3=82=AF=E3=82=BF=E3=83=AB=E3=83=AB=E3=83=BC=E3=83=97=E3=82=92=E8=BC=89=
+=E3=81=9B=E3=81=A6=E3=81=84=E3=81=8F=E3=80=81=E3=81=A8=E3=81=84=E3=81=86=
+=E6=84=9F=E3=81=98=E3=81=A0=E3=81=A3=E3=81=9F=E3=82=93=E3=81=A0=E3=81=91=
+=E3=81=A9=E3=80=81=E3=83=AC=E3=82=A4=E3=82=A2=E3=82=A6=E3=83=88=E3=81=AE=
+=E8=A9=B1=E3=81=A8=E8=A6=81=E7=B4=A0=E3=81=AE=E8=A9=B1=E3=81=8C=E5=88=86=
+=E9=9B=A2=E3=81=95=E3=82=8C=E3=81=A6=E3=81=84=E3=81=A6=E3=80=81=E3=81=AA=
+=E3=82=8B=E3=81=BB=E3=81=A9=E3=81=9D=E3=81=86=E3=81=A7=E3=81=8D=E3=81=A6=
+=E3=81=84=E3=82=8B=E3=81=AE=E3=81=8B=E3=80=81=E3=81=A8=E3=81=84=E3=81=86=
+=E3=81=AE=E3=81=8C=E5=9E=A3=E9=96=93=E8=A6=8B=E3=81=88=E3=81=9F=E3=81=AE=
+=E3=81=AF=E7=B5=90=E6=A7=8B=E6=A5=BD=E3=81=97=E3=81=8B=E3=81=A3=E3=81=9F=
+=E3=80=82 =E6=9C=89=E5=90=8D=E3=81=AA=E6=88=A6=E7=95=A5=E3=81=A8=E3=81=97=
+=E3=81=A6=E8=A8=80=E8=AA=9E=E5=8C=96=E3=81=95=E3=82=8C=E3=81=A6=E3=81=84=
+=E3=82=8B=E3=82=A2=E3=83=AB=E3=82=B4=E3=83=AA=E3=82=BA=E3=83=A0=E3=81=A0=
+=E3=81=A3=E3=81=9F=E3=82=8A=E3=80=81=E3=81=9D=E3=81=86=E3=81=84=E3=81=86=
+=E3=81=AE=E3=81=8C=E3=83=91=E3=83=BC=E3=83=84=E7=9A=84=E3=81=AB=E7=B5=84=
+=E3=81=BF=E5=90=88=E3=82=8F=E3=81=95=E3=81=A3=E3=81=A6=E3=81=84=E3=82=8B=
+=E3=81=A8=E3=81=8B=E3=81=AA=E3=82=89=E3=80=81=E3=81=9D=E3=81=86=E3=81=84=
+=E3=81=86=E3=83=91=E3=83=BC=E3=83=84=E5=8D=98=E4=BD=8D=E3=81=A7=E3=81=AE=
+=E8=AA=AC=E6=98=8E=E3=82=82=E6=AC=B2=E3=81=97=E3=81=84=E3=81=8B=E3=82=82=
+=E3=80=82 =E3=81=82=E3=81=A8=E3=81=AFUI=E3=81=AE=E8=A9=B1=E3=81=A7=
+=E8=A8=80=E3=81=86=E3=81=A8=E3=80=81=E3=82=AB=E3=83=BC=E3=82=BD=E3=83=AB=
+=E3=81=AE=E4=BD=8D=E7=BD=AE=E3=81=8C=E8=A6=8B=E3=81=88=E3=81=A5=E3=82=89=
+=E3=81=8F=E3=81=A6=E3=80=81=E4=BB=8A=E3=81=A9=E3=81=93=E3=81=AB=E3=83=95=
+=E3=82=A9=E3=83=BC=E3=82=AB=E3=82=B9=E3=81=95=E3=82=8C=E3=81=A6=E3=81=84=
+=E3=82=8B=E3=81=AE=E3=81=8B=E3=81=BF=E3=81=A5=E3=82=89=E3=81=8B=E3=81=A3=
+=E3=81=9F=E3=81=A8=E8=A8=80=E3=81=86=E3=81=AE=E3=81=8C=E5=9C=B0=E5=91=B3=
+=E3=81=AB=E3=81=97=E3=82=93=E3=81=A9=E3=81=8B=E3=81=A3=E3=81=9F=E3=81=A8=
+=E3=81=93=E3=82=8D=E3=80=82=E3=81=BE=E3=81=82=E3=81=93=E3=81=86=E8=A8=80=
+=E3=81=86=E3=81=AE=E3=81=AF=E3=81=8A=E3=81=84=E3=81=8A=E3=81=84=E7=9B=B4=
+=E3=81=97=E3=81=BE=E3=81=99=E2=80=A6=E3=80=82 =E3=81=82=E3=81=A8=E3=81=AF=
+=E3=80=81=E3=82=82=E3=81=97=E5=8B=95=E3=81=8B=E3=81=AA=E3=81=8B=E3=81=A3=
+=E3=81=9F=E3=81=A8=E3=81=8D=E3=81=AB=E3=80=81=E3=83=9C=E3=82=BF=E3=83=B3=
+=E3=82=92=E3=83=9D=E3=83=81=E3=83=83=E3=81=A8=E6=8A=BC=E3=81=99=E3=81=A8=
+=E3=81=A9=E3=81=93=E3=81=A7typo=E3=81=97=E3=81=A6=E3=82=8B=E3=81=8B=
+=E3=81=A8=E3=81=8B=E3=82=92=E6=95=99=E3=81=88=E3=81=A6=E3=81=8F=E3=82=8C=
+=E3=82=8B=E3=83=81=E3=82=A7=E3=83=83=E3=82=AF=E6=A9=9F=E8=83=BD=E3=82=82=
+=E3=81=82=E3=82=8B=E3=81=A8=E3=81=84=E3=81=84=E3=81=8B=E3=82=82=E3=80=82=
+=E3=82=A8=E3=83=A9=E3=83=BC=E3=83=A1=E3=83=83=E3=82=BB=E3=83=BC=E3=82=B8=
+=E3=82=82=E3=82=82=E3=81=86=E5=B0=91=E3=81=97=E8=A9=B3=E7=B4=B0=E3=81=AB=
+=E8=A8=98=E8=BF=B0=E3=81=99=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E3=81=95=
+=E3=81=9B=E3=81=9F=E3=82=89=E3=80=81=E7=89=B9=E5=AE=9A=E3=82=82=E6=97=A9=
+=E3=81=84=E3=82=93=E3=81=98=E3=82=83=E3=81=AA=E3=81=84=E3=81=8B=E3=81=97=
+=E3=82=89=E3=80=82 =E5=90=84=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=80=81AI=E3=81=8C=E3=82=B3=E3=83=A1=E3=83=B3=E3=83=88=E3=81=8F=
+=E3=82=8C=E3=82=8B=E3=81=A8=E3=81=93=E3=82=8D=E3=81=AF=E4=B8=80=E3=81=A4=
+=E3=81=AE=E7=94=BB=E9=9D=A2=E3=81=AB=E3=81=BE=E3=81=A8=E3=81=BE=E3=81=A3=
+=E3=81=A6=E3=81=84=E3=81=9F=E6=96=B9=E3=81=8C=E3=81=84=E3=81=84=E3=81=AE=
+=E3=81=8B=E3=82=82=E3=80=82=E3=83=81=E3=83=A3=E3=83=83=E3=83=88UI=
+=E3=81=8C=E3=81=82=E3=81=A3=E3=81=A6=E3=82=82=E3=81=84=E3=81=84=E3=81=8B=
+=E3=82=82=E3=81=AD=E3=80=82
+
+----------------------------------------
+
+
+=E5=85=A5=E5=8A=9B=E3=82=B3=E3=83=BC=E3=83=89
+
+let theShader; // Variable =
+to store the compiled shader program
+
+// Vertex shader: Handles the =
+geometry layout on the screen
+const vert =3D `
+  precision highp float; // =
+Use high precision for floating point numbers
+  attribute vec3 aPosition; =
+// Receive the vertex position from p5.js
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0); // Map vertices to the full clip =
+space
+  }
+`;
+
+// Fragment shader: Calculates the color and logic for every =
+pixel
+const frag =3D `
+  precision highp float; // Use high precision for =
+fractal calculations
+  uniform vec2 u_resolution; // The width and height =
+of the canvas
+  uniform float u_time; // Time variable that resets every =
+loop cycle
+  uniform float u_zoom; // Dynamic magnification factor from the=
+ draw loop
+  uniform float u_opacity; // Transparency level for the =
+fade-in/out effect
+  uniform float u_seed; // Unique seed value for each =
+sequence iteration
+  uniform float u_rotation; // Rotation angle sent from =
+the p5.js draw loop
+
+  // Function to generate a smooth rainbow color =
+palette
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); //=
+ Baseline brightness for the colors
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // =
+Contrast/Intensity of the color waves
+    vec3 c =3D vec3(1.0, 1.0, 1.0); =
+// Frequency of the color oscillations
+    vec3 d =3D vec3(0.0, 0.33, 0.=
+67); // RGB phase offsets to create the rainbow
+    return a + b * cos(6.=
+28318 * (t + d)); // Standard cosine-based color palette
+  }
+
+  // Creates radial symmetry and ensures a vertex points upwards
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p); // Calculate the =
+distance from the center point
+    float a =3D atan(p.y, p.x) - 1.5708; // =
+Calculate angle and rotate by 90 deg (PI/2)
+    float tau =3D 6.28318; // =
+Constant representing 2 * PI (a full circle)
+    a =3D mod(a, tau / n) - =
+tau / (n * 2.0); // Partition the circle into n slices
+    a =3D abs(a); // Mirror the coordinates within each slice
+    return vec2(cos(a), sin(a)) * r; // Revert back to 2D Cartesian =
+coordinates
+  }
+
+  void main() {
+    // Normalize coordinates so the center=
+ is (0,0) and range is approx -1 to 1
+    vec2 p =3D (gl_FragCoord.xy * 2.0=
+ - u_resolution.xy) / min(u_resolution.y, u_resolution.x);
+   =20
+    // Determine the number of mirror planes (3 to 8) based on the seed
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // Apply the upward-aligned radial symmetry
+
+    // Apply rotation to the coordinate space (the "camera" rotation)
+    float cosR =3D cos(u_rotation); // Calculate cosine of the rotation =
+angle
+    float sinR =3D sin(u_rotation); // Calculate sine of the rotation=
+ angle
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * cosR); //=
+ Standard 2D rotation matrix
+
+    p *=3D u_zoom; // Scale the coordinate =
+space by the current zoom level
+   =20
+    float t =3D u_time * 0.05; // =
+Set a slow time constant for the animation
+    vec3 color =3D vec3(0.0); //=
+ Start with a black canvas
+   =20
+    // Create a unique positional shift =
+for the fractal based on the seed
+    vec2 shift =3D vec2(0.8 + sin(u_seed =
+* 1.5) * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+
+    // Fractal loop: Iterate=
+ 7 times to create recursive complexity
+    for(int i =3D 0; i < 7; i++) {
+        // Fold the coordinate space based on inversion and movement
+        p =3D abs(p) / dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // Generate "Cantor Dust" visual particles using fract =
+logic
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0=
+.5));
+       =20
+        // Shift colors dynamically based on time, seed, =
+and distance
+        float colorShift =3D t + float(i) * 0.1 + length(p) * =
+0.2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift); // =
+Assign a rainbow hue
+       =20
+        float intensity =3D pow(float(i + =
+1), 1.5); // Increase light for deeper layers
+        color +=3D dustColor =
+* dust * intensity * 0.2; // Add dust glow to the total color
+       =20
+        // Render the neon transfinite lines using a specific thickness
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5; // =
+Add lines with offset hue
+    }
+
+    color *=3D 0.8; // Apply a master =
+brightness multiplier
+    color *=3D smoothstep(5.0, 0.0, length(p)); // =
+Apply a soft vignette to the edges
+   =20
+    // Final output: Apply the =
+opacity factor for smooth transitions
+    gl_FragColor =3D vec4(color * =
+u_opacity, 1.0);=20
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, =
+windowHeight, WEBGL); // Create a 3D context canvas
+  pixelDensity(1); // Set pixel density to 1 for consistent rendering
+  theShader =3D createShader(vert, frag); // Compile the shader code
+}
+
+function draw() {
+  shader(theShader); // Tell p5.js to use this specific =
+shader
+ =20
+  let absoluteTime =3D millis() / 1000.0; // Convert current =
+time to seconds
+ =20
+  let cycleDuration =3D 78.5; // Define the total =
+length of one sequence
+  let t =3D absoluteTime % cycleDuration; // =
+Calculate the current time within the loop
+ =20
+  let loopSeed =3D =
+floor(absoluteTime / cycleDuration); // Track the number of cycles =
+completed
+ =20
+  let zoomPulse =3D sin(t * 0.1); // Generate a slow-moving =
+sine wave for zooming
+  let currentZoom =3D map(zoomPulse, 1, -1, 0.1, 3.=
+0); // Map the sine wave to zoom levels (0.3 limit)
+
+  // --- Automatic Rotation Logic ---
+  let rotationAngle =3D 0; // =
+Initialize rotation angle to zero
+  let rotationStart =3D 47.12; // Start =
+rotation during the 2nd zoom-in (approx 47.1s)
+  if (t > rotationStart) { =
+// Check if we have passed the rotation threshold
+    randomSeed(loopSeed *=
+ 999); // Use loop seed to ensure consistent randomness per cycle
+    let direction =3D random() > 0.5 ? 1 : -1; // Randomly choose clockwise=
+ or counter-clockwise
+    // Map time from the start point to the end of =
+the loop to an angle (0 to 90 degrees)
+    rotationAngle =3D direction * =
+map(t, rotationStart, 78.5, 0, PI * 0.5);=20
+  }
+ =20
+  let opacity =3D 0.0; // Set initial transparency to zero
+ =20
+  if (t < 1.0) {
+    opacity =3D 0.0; // Keep the screen black for the =
+first second
+  } else if (t < 16.0) {
+    opacity =3D map(t, 1.0, 16.0, 0.0=
+, 1.0); // Gradually fade in over 15 seconds
+  } else if (t < 73.5) {
+    opacity =3D 1.0; // Keep full brightness during the main sequence
+  } else if (t < 78.5) {
+    opacity =3D map(t, 73.5, 78.5, 1.0, 0.0); // =
+Fade out over the final 5 seconds
+  }
+
+  // Set the uniform values to be =
+sent to the GPU
+  theShader.setUniform("u_resolution", [width, height]); //=
+ Send canvas dimensions
+  theShader.setUniform("u_time", t); // Send the =
+looping time value
+  theShader.setUniform("u_zoom", currentZoom); // Send =
+the current zoom state
+  theShader.setUniform("u_opacity", opacity); // =
+Send the current visibility level
+  theShader.setUniform("u_seed", =
+float(loopSeed)); // Send the cycle-specific seed
+  theShader.=
+setUniform("u_rotation", rotationAngle); // Send the calculated rotation =
+angle
+ =20
+  // Render a full-screen quad to display the shader
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Adjust canvas size if the =
+browser is resized
+}
+
+----------------------------------------
+
+
+=E7=94=9F=E6=88=90=E3=81=95=E3=82=8C=E3=81=9F=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97 (9)
+
+
+STEP 1
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81p5.js=E3=81=A7WebGL=E3=82=AD=E3=83=A3=
+=E3=83=B3=E3=83=90=E3=82=B9=E3=81=A8=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=82=92=E3=82=BB=E3=83=83=E3=83=88=E3=82=A2=E3=83=83=E3=83=97=
+=E3=81=99=E3=82=8B=E6=9C=80=E5=B0=8F=E9=99=90=E3=81=AE=E3=82=B3=E3=83=BC=
+=E3=83=89=E3=82=92=E8=A8=98=E8=BF=B0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E7=94=BB=E9=9D=A2=E5=85=A8=E4=BD=93=E3=82=92=E8=A6=86=E3=81=86=E5=9B=9B=
+=E8=A7=92=E5=BD=A2=E3=81=AB=E3=80=81=E5=8D=98=E8=89=B2=EF=BC=88=E8=B5=A4=
+=EF=BC=89=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=99=E3=82=8B=E3=81=A0=E3=81=91=
+=E3=81=AE=E5=8D=98=E7=B4=94=E3=81=AA=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E3=81=93=E3=82=8C=E3=81=8C=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=83=97=E3=83=AD=E3=82=B0=E3=83=A9=E3=83=9F=E3=83=B3=E3=82=B0=E3=81=AE=
+=E5=87=BA=E7=99=BA=E7=82=B9=E3=81=A7=E3=81=99=E3=80=82
+
+let theShader; // =E3=82=B3=E3=83=B3=E3=83=91=E3=82=A4=E3=83=AB=E3=81=95=
+=E3=82=8C=E3=81=9F=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=83=97=
+=E3=83=AD=E3=82=B0=E3=83=A9=E3=83=A0=E3=82=92=E6=A0=BC=E7=B4=8D=E3=81=99=
+=E3=82=8B=E5=A4=89=E6=95=B0
+
+// =E9=A0=82=E7=82=B9=E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=EF=BC=9A=E3=82=B8=E3=82=AA=E3=83=A1=E3=83=88=
+=E3=83=AA=E3=81=AE=E3=83=AC=E3=82=A4=E3=82=A2=E3=82=A6=E3=83=88=E3=82=92=
+=E5=87=A6=E7=90=86=E3=81=97=E3=81=BE=E3=81=99
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition; // p5.=
+js=E3=81=8B=E3=82=89=E9=A0=82=E7=82=B9=E4=BD=8D=E7=BD=AE=E3=82=92=
+=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+// =
+=E3=83=95=E3=83=A9=E3=82=B0=E3=83=A1=E3=83=B3=E3=83=88=E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=EF=BC=9A=E3=83=94=E3=82=AF=E3=82=BB=E3=83=AB=
+=E3=81=94=E3=81=A8=E3=81=AE=E8=89=B2=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=
+=E3=81=BE=E3=81=99
+const frag =3D `
+  precision highp float;
+  void main() {
+    // =E5=9B=BA=E5=AE=9A=E8=89=B2=EF=BC=88=E8=B5=A4=
+=EF=BC=89=E3=81=A7=E7=94=BB=E9=9D=A2=E3=82=92=E5=A1=97=E3=82=8A=E3=81=A4=
+=E3=81=B6=E3=81=97=E3=81=BE=E3=81=99
+    gl_FragColor =3D vec4(1.0, 0.0, 0.=
+0, 1.0);
+  }
+`;
+
+function setup() {
+  // WEBGL=E3=83=A2=E3=83=BC=E3=83=89=
+=E3=81=A7=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=82=92=E4=BD=9C=
+=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+  createCanvas(windowWidth, =
+windowHeight, WEBGL);
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=82=B3=E3=83=BC=E3=83=89=E3=82=92=E3=82=B3=E3=83=B3=E3=83=91=E3=82=A4=
+=E3=83=AB=E3=81=97=E3=81=BE=E3=81=99
+  theShader =3D createShader(vert, =
+frag);
+}
+
+function draw() {
+  // =E4=BD=9C=E6=88=90=E3=81=97=E3=81=9F=
+=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=82=92=E9=81=A9=E7=94=A8=
+=E3=81=97=E3=81=BE=E3=81=99
+  shader(theShader);
+ =20
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=8C=E6=8F=8F=
+=E7=94=BB=E3=81=95=E3=82=8C=E3=82=8B=E3=82=88=E3=81=86=E3=80=81=E7=94=BB=
+=E9=9D=A2=E5=85=A8=E4=BD=93=E3=82=92=E8=A6=86=E3=81=86=E5=9B=9B=E8=A7=92=
+=E5=BD=A2=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  // =E3=82=A6=E3=82=A3=E3=83=B3=E3=83=89=E3=82=A6=E3=82=B5=E3=82=A4=
+=E3=82=BA=E3=81=8C=E5=A4=89=E6=9B=B4=E3=81=95=E3=82=8C=E3=81=9F=E3=82=89=
+=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=82=92=E3=83=AA=E3=82=B5=
+=E3=82=A4=E3=82=BA=E3=81=97=E3=81=BE=E3=81=99
+  resizeCanvas(windowWidth, =
+windowHeight);
+}
+
+
+
+STEP 2
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=AB `u_resolution` =E3=81=A8=E3=81=84=E3=81=86uniform=
+=E5=A4=89=E6=95=B0=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=
+=E3=80=82=E3=81=93=E3=82=8C=E3=81=AFp5.js=E3=81=8B=E3=82=89=E3=82=AD=
+=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=81=AE=E8=A7=A3=E5=83=8F=E5=BA=A6=
+=EF=BC=88=E5=B9=85=E3=81=A8=E9=AB=98=E3=81=95=EF=BC=89=E3=82=92=E3=82=B7=
+=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E4=BC=9D=E3=81=88=E3=82=8B=
+=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=E3=80=82=E3=81=93=E3=81=AE=E8=A7=A3=
+=E5=83=8F=E5=BA=A6=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A6=E3=83=94=E3=82=AF=
+=E3=82=BB=E3=83=AB=E5=BA=A7=E6=A8=99=E3=82=920.0=EF=BD=9E1.=
+0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E6=AD=A3=E8=A6=8F=E5=8C=96=E3=81=97=
+=E3=80=81=E4=BD=8D=E7=BD=AE=E3=81=AB=E5=BF=9C=E3=81=98=E3=81=9F=E3=82=B0=
+=E3=83=A9=E3=83=87=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=E6=8F=8F=
+=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  // p5.=
+js=E3=81=8B=E3=82=89=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=
+=E3=81=AE=E8=A7=A3=E5=83=8F=E5=BA=A6=E3=82=92=E5=8F=97=E3=81=91=E5=8F=96=
+=E3=82=8A=E3=81=BE=E3=81=99
+  uniform vec2 u_resolution;
+
+  void main() {
+    // gl_FragCoord.xy=E3=81=AF=E3=83=94=E3=82=AF=E3=82=BB=E3=83=AB=
+=E3=81=AE=E3=82=B9=E3=82=AF=E3=83=AA=E3=83=BC=E3=83=B3=E5=BA=A7=E6=A8=99=
+=E3=81=A7=E3=81=99 (=E4=BE=8B: =E5=B7=A6=E4=B8=8B=E9=9A=85=E3=81=8C(0,0))
+    // u_resolution=E3=81=A7=E5=89=B2=E3=82=8B=E3=81=93=E3=81=A8=E3=81=A7=
+=E3=80=81=E5=BA=A7=E6=A8=99=E3=82=920.0=E3=81=8B=E3=82=891.=
+0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E6=AD=A3=E8=A6=8F=E5=8C=96=E3=81=97=
+=E3=81=BE=E3=81=99
+    vec2 uv =3D gl_FragCoord.xy / u_resolution.xy;
+   =20
+    // =E6=AD=A3=E8=A6=8F=E5=8C=96=E3=81=95=E3=82=8C=E3=81=9Fx=
+=E5=BA=A7=E6=A8=99=E3=82=92=E8=B5=A4=E3=80=81y=E5=BA=A7=E6=A8=99=E3=82=92=
+=E7=B7=91=E3=81=AE=E6=88=90=E5=88=86=E3=81=AB=E5=89=B2=E3=82=8A=E5=BD=93=
+=E3=81=A6=E3=81=A6=E3=82=B0=E3=83=A9=E3=83=87=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=82=92=E4=BD=9C=E3=82=8A=E3=81=BE=E3=81=99
+    gl_FragColor =3D vec4(uv.x, uv.y, 0.5, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  theShader =3D =
+createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=ABuniform=
+=E5=A4=89=E6=95=B0=E3=81=A8=E3=81=97=E3=81=A6=E3=82=AD=E3=83=A3=E3=83=B3=
+=E3=83=90=E3=82=B9=E3=81=AE=E5=B9=85=E3=81=A8=E9=AB=98=E3=81=95=E3=82=92=
+=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99
+  theShader.setUniform("u_resolution",=
+ [width, height]);
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+STEP 3
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=81=AF=E3=80=81=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB =
+`u_time` =E3=81=A8=E3=81=84=E3=81=86uniform=E5=A4=89=E6=95=B0=E3=82=92=
+=E8=BF=BD=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=93=E3=82=8C=
+=E3=81=AFp5.js=E3=81=8B=E3=82=89=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=
+=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E4=BC=9D=
+=E3=81=88=E3=82=8B=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=E3=80=82=E3=81=93=
+=E3=81=AE=E6=99=82=E9=96=93=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A6=E8=89=B2=
+=E3=81=AE=E5=80=A4=E3=82=92=E5=A4=89=E5=8C=96=E3=81=95=E3=81=9B=E3=82=8B=
+=E3=81=93=E3=81=A8=E3=81=A7=E3=80=81=E9=9D=99=E7=9A=84=E3=81=AA=E3=82=B0=
+=E3=83=A9=E3=83=87=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=E5=8B=95=
+=E7=9A=84=E3=81=AA=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time; // p5.js=E3=81=8B=E3=82=89=E7=B5=8C=E9=81=8E=
+=E6=99=82=E9=96=93=E3=82=92=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=
+=E3=81=99
+
+  void main() {
+    vec2 uv =3D gl_FragCoord.xy / u_resolution.=
+xy;
+   =20
+    // sin(u_time)=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A6=
+=E3=80=81=E6=99=82=E9=96=93=E7=B5=8C=E9=81=8E=E3=81=A7=E9=9D=92=E6=88=90=
+=E5=88=86=E3=81=8C=E6=BB=91=E3=82=89=E3=81=8B=E3=81=AB=E5=A4=89=E5=8C=96=
+=E3=81=99=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99
+    float blue =3D (sin(u_time * 2.0) + 1.0) / 2.0; // 0.0-1.=
+0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E3=83=9E=E3=83=83=E3=83=94=E3=83=B3=
+=E3=82=B0
+   =20
+    gl_FragColor =3D vec4(uv.x, uv.y, blue, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  // absoluteTime =3D =E3=83=97=E3=83=AD=
+=E3=82=B0=E3=83=A9=E3=83=A0=E9=96=8B=E5=A7=8B=E3=81=8B=E3=82=89=E3=81=AE=
+=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=EF=BC=88=E7=A7=92=EF=BC=89
+  let absoluteTime =3D millis() / 1000.0;
+ =20
+  theShader.=
+setUniform("u_resolution", [width, height]);
+  // =E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=E3=81=ABuniform=E5=A4=89=E6=95=B0=E3=81=A8=
+=E3=81=97=E3=81=A6=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=E3=82=92=E6=B8=A1=
+=E3=81=97=E3=81=BE=E3=81=99
+  theShader.setUniform("u_time", absoluteTime);
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+STEP 4
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=81=AF=
+=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E5=9B=B3=E5=BD=A2=
+=E3=81=AE=E5=9F=BA=E6=9C=AC=E6=A7=8B=E9=80=A0=E3=82=92=E5=B0=8E=E5=85=A5=
+=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E5=86=85=E3=81=A7=E5=BA=A7=E6=A8=99=E7=B3=BB=E3=82=92=E7=94=BB=
+=E9=9D=A2=E4=B8=AD=E5=BF=83=E3=81=8C=E5=8E=9F=E7=82=B9=E3=81=AB=E3=81=AA=
+=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E5=A4=89=E6=8F=9B=E3=81=97=E3=80=81=
+=E5=8F=8D=E8=BB=A2=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E3=81=AE=
+=E5=9F=BA=E6=9C=AC=E7=9A=84=E3=81=AA=E8=A8=88=E7=AE=97=E5=BC=8F=E3=82=92=
+=E9=81=A9=E7=94=A8=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=BE=E3=81=9F=
+=E3=80=81p5.js=E5=81=B4=E3=81=A7=E6=99=82=E9=96=93=E3=81=AB=E5=9F=BA=
+=E3=81=A5=E3=81=84=E3=81=9F=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=A4=E3=82=92=
+=E8=A8=88=E7=AE=97=E3=81=97=E3=80=81`u_zoom`=E3=81=A8=E3=81=97=E3=81=A6=
+=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=
+=E3=81=A6=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=
+=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom; // p5.=
+js=E3=81=8B=E3=82=89=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=8D=E7=8E=87=
+=E3=82=92=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+
+  void main() {
+    // =E5=BA=A7=E6=A8=99=E3=82=92=E6=AD=A3=E8=A6=8F=
+=E5=8C=96=E3=81=97=E3=80=81=E4=B8=AD=E5=BF=83=E3=81=8C(0,=
+0)=E3=81=AB=E3=81=AA=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E8=AA=BF=
+=E6=95=B4=E3=81=97=E3=81=BE=E3=81=99
+    // =E3=82=A2=E3=82=B9=E3=83=9A=
+=E3=82=AF=E3=83=88=E6=AF=94=E3=82=92=E7=B6=AD=E6=8C=81=E3=81=99=E3=82=8B=
+=E3=81=9F=E3=82=81=E3=80=81=E7=9F=AD=E3=81=84=E6=96=B9=E3=81=AE=E8=BE=BA=
+=E3=82=92=E5=9F=BA=E6=BA=96=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+   =20
+    p *=3D u_zoom; // =E5=BA=A7=E6=A8=99=
+=E7=A9=BA=E9=96=93=E3=82=92=E3=82=BA=E3=83=BC=E3=83=A0=E3=81=97=E3=81=BE=
+=E3=81=99
+   =20
+    vec3 color =3D vec3(0.0); // =E6=8F=8F=E7=94=BB=
+=E8=89=B2=E3=82=92=E9=BB=92=E3=81=A7=E5=88=9D=E6=9C=9F=E5=8C=96=E3=81=97=
+=E3=81=BE=E3=81=99
+   =20
+    // =E5=8F=8D=E8=BB=A2=E3=83=95=E3=83=A9=
+=E3=82=AF=E3=82=BF=E3=83=AB=E3=81=AE=E5=9F=BA=E6=9C=AC=E7=9A=84=E3=81=AA=
+=E8=A8=88=E7=AE=97=E5=BC=8F=E3=82=921=E5=9B=9E=E9=81=A9=E7=94=A8=E3=81=97=
+=E3=81=BE=E3=81=99
+    p =3D abs(p) / dot(p, p) - 0.8;
+   =20
+    // =E8=A8=88=E7=AE=97=E7=B5=90=E6=9E=9C=E3=81=AEp=E3=81=AE=E9=95=B7=
+=E3=81=95=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E6=98=8E=E3=82=8B=
+=E3=81=95=E3=82=92=E6=B1=BA=E5=AE=9A=E3=81=97=E3=80=81=E5=BD=A2=E7=8A=B6=
+=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+    float brightness =3D smoothstep(1.0, 0.0, length(p));
+    color =3D vec3(brightness);
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5; // cycleDuration =3D =
+1=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=AE=E9=95=B7=E3=81=95
+  let t =3D absoluteTime % cycleDuration; // t =3D =E7=8F=BE=E5=9C=A8=
+=E3=81=AE=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E5=86=85=E3=81=AE=E6=99=82=
+=E9=96=93
+ =20
+  // =E6=99=82=E9=96=93=E3=81=AB=E5=BF=9C=E3=81=98=
+=E3=81=A6=E3=82=B5=E3=82=A4=E3=83=B3=E6=B3=A2=E3=82=92=E7=94=9F=E6=88=90=
+=E3=81=97=E3=80=81=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=8D=E7=8E=87=E3=82=92=
+=E8=A8=88=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+  let zoomPulse =3D sin(t * 0=
+.1);
+  let currentZoom =3D map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform("u_resolution", [width, height]);
+  theShader.setUniform("u_time", t);
+  theShader.setUniform("u_zoom", =
+currentZoom); // =E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E3=82=BA=E3=83=BC=
+=E3=83=A0=E5=80=8D=E7=8E=87=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+STEP 5
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=81=AF=
+=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E8=A8=88=E7=AE=97=
+=E3=82=92for=E3=83=AB=E3=83=BC=E3=83=97=E3=81=A7=E8=A4=87=E6=95=B0=
+=E5=9B=9E=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=E3=80=81=E3=82=88=E3=82=8A=
+=E8=A4=87=E9=9B=91=E3=81=AA=E5=BD=A2=E7=8A=B6=E3=82=92=E4=BD=9C=E3=82=8A=
+=E5=87=BA=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E8=89=B2=E4=BB=98=E3=81=91=
+=E3=81=AE=E3=81=9F=E3=82=81=E3=81=AB`getRainbow`=E9=96=A2=E6=95=B0=
+=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=80=81=E8=A8=88=E7=AE=97=E3=81=AE=
+=E6=B7=B1=E3=81=95=E3=82=84=E4=BD=8D=E7=BD=AE=E3=81=AB=E5=BF=9C=E3=81=98=
+=E3=81=A6=E8=89=B2=E3=81=8C=E5=A4=89=E5=8C=96=E3=81=99=E3=82=8B=E3=82=88=
+=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=BE=E3=81=9F=
+=E3=80=81`u_seed`=E3=82=92=E5=B0=8E=E5=85=A5=E3=81=97=E3=80=81=E3=82=A2=
+=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=81=AE=E3=82=B5=
+=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=94=E3=81=A8=E3=81=AB=E7=95=B0=E3=81=AA=
+=E3=82=8B=E6=A8=A1=E6=A7=98=E3=81=8C=E7=94=9F=E6=88=90=E3=81=95=E3=82=8C=
+=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed; // p5.=
+js=E3=81=8B=E3=82=89=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=94=
+=E3=81=A8=E3=81=AE=E3=82=B7=E3=83=BC=E3=83=89=E5=80=A4=E3=82=92=E5=8F=97=
+=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+
+  // t (0.0-1.0) =
+=E3=81=AE=E5=80=A4=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E8=99=B9=
+=E8=89=B2=E3=82=92=E7=94=9F=E6=88=90=E3=81=99=E3=82=8B=E9=96=A2=E6=95=B0
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); // a =3D =
+=E3=83=99=E3=83=BC=E3=82=B9=E3=81=AE=E6=98=8E=E3=82=8B=E3=81=95
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // b =3D =E3=82=B3=E3=83=B3=E3=83=88=
+=E3=83=A9=E3=82=B9=E3=83=88
+    vec3 c =3D vec3(1.0, 1.0, 1.0); // c =3D =
+=E8=89=B2=E3=81=AE=E5=91=A8=E6=B3=A2=E6=95=B0
+    vec3 d =3D vec3(0.0, 0.33=
+, 0.67); // d =3D =E4=BD=8D=E7=9B=B8=E3=82=AA=E3=83=95=E3=82=BB=E3=83=83=
+=E3=83=88
+    return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / =
+min(u_resolution.y, u_resolution.x);
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05; // t =3D =E3=82=A2=E3=83=8B=E3=83=A1=
+=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E7=94=A8=E3=81=AE=E3=82=86=E3=81=A3=
+=E3=81=8F=E3=82=8A=E3=81=97=E3=81=9F=E6=99=82=E9=96=93
+    vec3 color =3D vec3(0.0);
+   =20
+    // u_seed=E3=81=AB=E5=9F=BA=
+=E3=81=A5=E3=81=84=E3=81=A6=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=
+=E3=81=AE=E5=BD=A2=E7=8A=B6=E3=82=92=E5=BE=AE=E5=A6=99=E3=81=AB=E5=A4=89=
+=E5=8C=96=E3=81=95=E3=81=9B=E3=82=8B=E3=81=9F=E3=82=81=E3=81=AE=E3=82=B7=
+=E3=83=95=E3=83=88=E5=80=A4
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5)=
+ * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+
+    // =E8=A8=88=E7=AE=97=E3=82=92=
+7=E5=9B=9E=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=E3=81=A6=E3=80=81=E8=A4=87=
+=E9=9B=91=E3=81=AA=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E5=BD=A2=
+=E7=8A=B6=E3=82=92=E7=94=9F=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+    for(int i =3D 0; i < 7; i++) {
+        p =3D abs(p) / dot(p, p) - =
+(shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // =
+p=E3=81=AE=E9=95=B7=E3=81=95=E3=81=A8=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=
+=E5=9B=9E=E6=95=B0=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E8=89=B2=
+=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.2 + u_seed =
+* 0.1;
+       =20
+        // =E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=
+=E3=81=8C=E6=B7=B1=E3=81=8F=E3=81=AA=E3=82=8B=E3=81=BB=E3=81=A9=E6=98=8E=
+=E3=82=8B=E3=81=95=E3=82=92=E5=A2=97=E3=81=97=E3=80=81=E8=89=B2=E3=82=92=
+=E5=8A=A0=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+        float intensity =3D =
+pow(float(i + 1), 1.5);
+        color +=3D getRainbow(colorShift) * (1.0 / =
+length(p)) * 0.05 * intensity;
+    }
+
+    gl_FragColor =3D vec4(color, 1.=
+0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, =
+WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time (=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=
+=E5=86=85=E3=81=AE=E6=99=82=E9=96=93)
+ =20
+  // =E4=BD=95=E3=82=B5=
+=E3=82=A4=E3=82=AF=E3=83=AB=E7=9B=AE=E3=81=8B=E3=82=92=E7=A4=BA=E3=81=99=
+=E3=82=B7=E3=83=BC=E3=83=89=E5=80=A4=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=
+=E3=81=BE=E3=81=99
+  let loopSeed =3D floor(absoluteTime / cycleDuration);
+ =20
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D map(zoomPulse,=
+ 1, -1, 0.1, 3.0);
+
+  theShader.setUniform("u_resolution", [width, =
+height]);
+  theShader.setUniform("u_time", t);
+  theShader.=
+setUniform("u_zoom", currentZoom);
+  theShader.setUniform("u_seed", =
+float(loopSeed)); // =E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E3=82=B7=
+=E3=83=BC=E3=83=89=E5=80=A4=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+STEP 6
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=81=AF=
+=E3=80=81`fold`=E3=81=A8=E3=81=84=E3=81=86=E9=96=A2=E6=95=B0=E3=82=92=
+=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E8=BF=BD=E5=8A=A0=
+=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=93=E3=82=8C=E3=81=AF=E5=BA=A7=
+=E6=A8=99=E7=A9=BA=E9=96=93=E3=82=92=E6=8A=98=E3=82=8A=E3=81=9F=E3=81=9F=
+=E3=82=93=E3=81=A7=E5=8F=8D=E8=BB=A2=E3=81=95=E3=81=9B=E3=82=8B=E3=81=93=
+=E3=81=A8=E3=81=A7=E3=80=81=E4=B8=87=E8=8F=AF=E9=8F=A1=E3=81=AE=E3=82=88=
+=E3=81=86=E3=81=AA=E6=94=BE=E5=B0=84=E7=8A=B6=E3=81=AE=E5=AF=BE=E7=A7=B0=
+=E3=83=91=E3=82=BF=E3=83=BC=E3=83=B3=E3=82=92=E4=BD=9C=E3=82=8A=E5=87=BA=
+=E3=81=99=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=E3=80=82`u_seed`=E3=81=AE=
+=E5=80=A4=E3=81=AB=E3=82=88=E3=81=A3=E3=81=A6=E5=88=86=E5=89=B2=E6=95=B0=
+=E3=81=8C=E5=A4=89=E3=82=8F=E3=82=8A=E3=80=81=E3=82=B5=E3=82=A4=E3=82=AF=
+=E3=83=AB=E3=81=94=E3=81=A8=E3=81=AB=E7=95=B0=E3=81=AA=E3=82=8B=E5=AF=BE=
+=E7=A7=B0=E6=80=A7=E3=81=8C=E7=8F=BE=E3=82=8C=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+
+  vec3 getRainbow(float t)=
+ {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  // =E3=82=AB=E3=83=AC=E3=82=A4=E3=83=89=E3=82=B9=E3=82=B3=E3=83=BC=
+=E3=83=97=EF=BC=88=E4=B8=87=E8=8F=AF=E9=8F=A1=EF=BC=89=E3=81=AE=E3=82=88=
+=E3=81=86=E3=81=AA=E6=94=BE=E5=B0=84=E7=8A=B6=E3=81=AE=E5=AF=BE=E7=A7=B0=
+=E6=80=A7=E3=82=92=E4=BD=9C=E3=82=8A=E5=87=BA=E3=81=99=E9=96=A2=E6=95=B0
+  vec2 fold(vec2 p, float n) { // n =3D =E5=88=86=E5=89=B2=E6=95=B0
+    float r =3D length(p); // r =3D =E4=B8=AD=E5=BF=83=E3=81=8B=E3=82=89=
+=E3=81=AE=E8=B7=9D=E9=9B=A2
+    float a =3D atan(p.y, p.x) - 1.5708; // a =
+=3D =E8=A7=92=E5=BA=A6 (90=E5=BA=A6=E5=9B=9E=E8=BB=A2)
+    float tau =3D 6.28318; // tau =3D 2 * PI
+    a =3D mod(a, tau / n) - =
+tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) /=
+ min(u_resolution.y, u_resolution.x);
+   =20
+    // =
+u_seed=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E9=8F=A1=E3=81=AE=
+=E6=9E=9A=E6=95=B0=EF=BC=88=E5=88=86=E5=89=B2=E6=95=B0=EF=BC=89=E3=82=92=
+=E6=B1=BA=E5=AE=9A=E3=81=97=E3=81=BE=E3=81=99
+    float numMirrors =3D 3.0 =
++ mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // =
+=E5=BA=A7=E6=A8=99=E3=81=AB=E3=82=AB=E3=83=AC=E3=82=A4=E3=83=89=E3=82=B9=
+=E3=82=B3=E3=83=BC=E3=83=97=E5=8A=B9=E6=9E=9C=E3=82=92=E9=81=A9=E7=94=A8=
+=E3=81=97=E3=81=BE=E3=81=99
+
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5) * 0.1, 0.8 + cos(u_seed * 0=
+.7) * 0.1);
+    for(int i =3D 0; i < 7; i++) {
+        p =3D abs(p) / dot(p=
+, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+        float colorShift =3D=
+ t + float(i) * 0.1 + length(p) * 0.2 + u_seed * 0.1;
+        float intensity =3D pow(float(i + 1), 1.5);
+        color +=3D getRainbow(colorShift) * (1.0 / length(p)) * 0.05 * =
+intensity;
+    }
+   =20
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time
+  let loopSeed =3D floor(absoluteTime / =
+cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D =
+map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform("u_resolution", =
+[width, height]);
+  theShader.setUniform("u_time", t);
+  theShader.setUniform("u_zoom", currentZoom);
+  theShader.=
+setUniform("u_seed", float(loopSeed));
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1,=
+ 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, =
+windowHeight);
+}
+
+
+
+STEP 7
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=
+=E3=83=AB=E3=83=AB=E3=83=BC=E3=83=97=E5=86=85=E3=81=AE=E6=8F=8F=E7=94=BB=
+=E3=83=AD=E3=82=B8=E3=83=83=E3=82=AF=E3=82=92=E3=82=88=E3=82=8A=E8=A4=87=
+=E9=9B=91=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E5=8D=98=E7=B4=94=
+=E3=81=AA=E8=89=B2=E4=BB=98=E3=81=91=E3=81=AE=E4=BB=A3=E3=82=8F=E3=82=8A=
+=E3=81=AB=E3=80=81=E7=B2=92=E5=AD=90=E7=8A=B6=E3=81=AE=E3=80=8E=E3=83=80=
+=E3=82=B9=E3=83=88=E3=80=8F=E5=8A=B9=E6=9E=9C=E3=81=A8=E3=80=81=E3=83=8D=
+=E3=82=AA=E3=83=B3=E3=81=AE=E3=82=88=E3=81=86=E3=81=AA=E3=80=8E=E3=83=A9=
+=E3=82=A4=E3=83=B3=E3=80=8F=E5=8A=B9=E6=9E=9C=E3=82=92=E7=94=9F=E6=88=90=
+=E3=81=97=E3=81=A6=E9=87=8D=E3=81=AD=E5=90=88=E3=82=8F=E3=81=9B=E3=81=BE=
+=E3=81=99=E3=80=82=E3=81=93=E3=82=8C=E3=81=AB=E3=82=88=E3=82=8A=E3=80=81=
+=E8=A6=96=E8=A6=9A=E7=9A=84=E3=81=AB=E8=B1=8A=E3=81=8B=E3=81=A7=E6=B7=B1=
+=E3=81=BF=E3=81=AE=E3=81=82=E3=82=8B=E8=A1=A8=E7=8F=BE=E3=81=8C=E5=8F=AF=
+=E8=83=BD=E3=81=AB=E3=81=AA=E3=82=8A=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+
+  vec3 getRainbow(float t)=
+ {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p);
+    float a =3D atan(p.y, p.x) - 1.5708;
+    float tau =3D 6.28318;
+    a =3D mod(a, tau / n) - tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors);
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5) * 0.1, 0.8 + cos(u_seed * 0=
+.7) * 0.1);
+
+    for(int i =3D 0; i < 7; i++) {
+        p =3D abs(p) / =
+dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // --- =E3=81=93=E3=81=93=E3=81=8B=E3=82=89=E6=8F=8F=E7=94=BB=
+=E3=83=AD=E3=82=B8=E3=83=83=E3=82=AF=E3=82=92=E5=A4=89=E6=9B=B4 ---
+       =20
+        // =E3=80=8C=E3=82=AB=E3=83=B3=E3=83=88=E3=83=BC=
+=E3=83=AB=E3=83=80=E3=82=B9=E3=83=88=E3=80=8D=E3=81=AE=E3=82=88=E3=81=86=
+=E3=81=AA=E7=B2=92=E5=AD=90=E7=8A=B6=E3=81=AE=E8=A6=96=E8=A6=9A=E5=8A=B9=
+=E6=9E=9C=E3=82=92=E7=94=9F=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0.5));
+       =20
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.=
+2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift);
+       =20
+        float intensity =3D pow(float(i + 1), 1.5);
+        // =E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E3=83=80=E3=82=B9=
+=E3=83=88=E3=81=AE=E6=98=8E=E3=82=8B=E3=81=95=E3=81=A8=E8=89=B2=E3=82=92=
+=E6=9C=80=E7=B5=82=E7=9A=84=E3=81=AA=E8=89=B2=E3=81=AB=E5=8A=A0=E7=AE=97=
+=E3=81=97=E3=81=BE=E3=81=99
+        color +=3D dustColor * dust * intensity=
+ * 0.2;
+       =20
+        // =E3=83=8D=E3=82=AA=E3=83=B3=E3=81=AE=
+=E3=82=88=E3=81=86=E3=81=AA=E7=B4=B0=E3=81=84=E7=B7=9A=E3=82=92=E6=8F=8F=
+=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+        float line =3D 0.1 / abs(p.x +=
+ p.y + sin(t * 10.0 + float(i) + u_seed));
+        // =
+=E3=83=80=E3=82=B9=E3=83=88=E3=81=A8=E3=81=AF=E5=B0=91=E3=81=97=E8=89=B2=
+=E7=9B=B8=E3=82=92=E3=81=9A=E3=82=89=E3=81=97=E3=81=9F=E8=89=B2=E3=81=A7=
+=E7=B7=9A=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=80=81=E5=8A=A0=E7=AE=97=
+=E3=81=97=E3=81=BE=E3=81=99
+        color +=3D getRainbow(colorShift + 0.5)=
+ * line * 0.5;
+    }
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time
+  let loopSeed =3D floor(absoluteTime / =
+cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D =
+map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform("u_resolution", =
+[width, height]);
+  theShader.setUniform("u_time", t);
+  theShader.setUniform("u_zoom", currentZoom);
+  theShader.=
+setUniform("u_seed", float(loopSeed));
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1,=
+ 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, =
+windowHeight);
+}
+
+
+
+STEP 8
+
+=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=
+=E3=82=B7=E3=83=A7=E3=83=B3=E3=81=AB=E5=9B=9E=E8=BB=A2=E5=8A=B9=E6=9E=9C=
+=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82p5.=
+js=E5=81=B4=E3=81=A7=E6=99=82=E9=96=93=E3=81=AE=E7=B5=8C=E9=81=8E=
+=E3=81=AB=E5=BF=9C=E3=81=98=E3=81=A6=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=
+=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=E3=80=81`u_rotation`=E3=81=A8=
+=E3=81=97=E3=81=A6=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=
+=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=82=B7=E3=82=A7=E3=83=BC=
+=E3=83=80=E3=83=BC=E5=81=B4=E3=81=A7=E3=81=AF=E3=80=81=E5=8F=97=E3=81=91=
+=E5=8F=96=E3=81=A3=E3=81=9F=E8=A7=92=E5=BA=A6=E3=82=92=E4=BD=BF=E3=81=A3=
+=E3=81=A62D=E5=9B=9E=E8=BB=A2=E8=A1=8C=E5=88=97=E3=82=92=E9=81=A9=
+=E7=94=A8=E3=81=97=E3=80=81=E6=8F=8F=E7=94=BB=E3=81=95=E3=82=8C=E3=82=8B=
+=E6=A8=A1=E6=A7=98=E5=85=A8=E4=BD=93=E3=82=92=E5=9B=9E=E8=BB=A2=E3=81=95=
+=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82
+
+let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+  uniform float u_rotation; // p5.js=E3=81=8B=E3=82=89=E5=9B=9E=E8=BB=A2=
+=E8=A7=92=E5=BA=A6=E3=82=92=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=
+=E3=81=99
+
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c *=
+ t + d));
+  }
+
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p);
+    float a =3D atan(p.y, p.x) - 1.5708;
+    float tau =3D 6.28318;
+    a =3D mod(a, tau / n) - tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors);
+
+    // --- =E3=81=93=E3=81=93=E3=81=8B=
+=E3=82=89=E5=9B=9E=E8=BB=A2=E5=87=A6=E7=90=86=E3=82=92=E8=BF=BD=E5=8A=A0 =
+---
+    // 2D=E5=9B=9E=E8=BB=A2=E8=A1=8C=E5=88=97=E3=82=92=E4=BD=BF=
+=E3=81=A3=E3=81=A6=E5=BA=A7=E6=A8=99=E7=B3=BB=E5=85=A8=E4=BD=93=E3=82=92=
+=E5=9B=9E=E8=BB=A2=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99
+    float cosR =3D cos(u_rotation);
+    float sinR =3D sin(u_rotation);
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * cosR);
+   =20
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.=
+5) * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+    for(int i =3D 0; i < 7; i++) =
+{
+        p =3D abs(p) / dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.=
+05);
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0.=
+5));
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.2 + =
+u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift);
+        float intensity =3D pow(float(i + 1), 1.5);
+        color +=3D dustColor * dust * intensity * 0.2;
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5;
+    }
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis() / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % cycleDuration; // =
+t =3D time
+  let loopSeed =3D floor(absoluteTime / cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D map(zoomPulse, 1, =
+-1, 0.1, 3.0);
+ =20
+  // --- =E3=81=93=E3=81=93=E3=81=8B=E3=82=89=
+=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=E3=81=AE=E8=A8=88=E7=AE=97=E3=82=92=
+=E8=BF=BD=E5=8A=A0 ---
+  let rotationAngle =3D 0.0;
+  let rotationStart =3D 47.12; // =E5=9B=9E=E8=BB=A2=E3=82=92=E9=96=8B=
+=E5=A7=8B=E3=81=99=E3=82=8B=E6=99=82=E9=96=93 (=E7=A7=92)
+  if (t > rotationStart) {
+    randomSeed(loopSeed * 999);
+    let direction =3D random() > 0.5 ? 1 : -1; // =E5=9B=9E=E8=BB=A2=
+=E6=96=B9=E5=90=91=E3=82=92=E3=83=A9=E3=83=B3=E3=83=80=E3=83=A0=E3=81=AB=
+=E6=B1=BA=E5=AE=9A
+    rotationAngle =3D direction * map(t, rotationStart, =
+78.5, 0, PI * 0.5);=20
+  }
+
+  theShader.setUniform("u_resolution", [width, =
+height]);
+  theShader.setUniform("u_time", t);
+  theShader.=
+setUniform("u_zoom", currentZoom);
+  theShader.setUniform("u_seed", =
+float(loopSeed));
+  theShader.setUniform("u_rotation", rotationAngle); // =
+=E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=
+=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=
+=E3=81=97=E3=81=BE=E3=81=99
+
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+
+STEP 9
+
+=E3=81=93=E3=81=AE=E6=9C=80=E7=B5=82=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=
+=E3=82=B7=E3=83=A7=E3=83=B3=E3=81=AE=E6=BC=94=E5=87=BA=E3=82=92=E4=BB=95=
+=E4=B8=8A=E3=81=92=E3=80=81=E3=82=B3=E3=83=BC=E3=83=89=E3=82=92=E5=AE=8C=
+=E6=88=90=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82p5.=
+js=E5=81=B4=E3=81=A7=E3=83=95=E3=82=A7=E3=83=BC=E3=83=89=E3=82=A4=
+=E3=83=B3=E3=83=BB=E3=83=95=E3=82=A7=E3=83=BC=E3=83=89=E3=82=A2=E3=82=A6=
+=E3=83=88=E3=81=AE=E3=83=AD=E3=82=B8=E3=83=83=E3=82=AF=E3=82=92=E5=AE=9F=
+=E8=A3=85=E3=81=97=E3=80=81=E3=81=9D=E3=81=AE=E7=B5=90=E6=9E=9C=E3=82=92`u_=
+opacity`=E3=81=A8=E3=81=97=E3=81=A6=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=82=B7=
+=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E5=81=B4=E3=81=A7=E3=81=AF=E7=94=BB=
+=E9=9D=A2=E3=81=AE=E7=AB=AF=E3=82=92=E6=9A=97=E3=81=8F=E3=81=99=E3=82=8B=
+=E3=83=B4=E3=82=A3=E3=83=8D=E3=83=83=E3=83=88=E5=8A=B9=E6=9E=9C=E3=81=AA=
+=E3=81=A9=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=80=81=E6=9C=80=E7=B5=82=
+=E7=9A=84=E3=81=AA=E8=89=B2=E3=81=AB=E4=B8=8D=E9=80=8F=E6=98=8E=E5=BA=A6=
+=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=A6=E3=80=81=E5=AE=8C=E6=88=90=
+=E3=81=A7=E3=81=99=E3=80=82
+
+let theShader; // Variable to store the =
+compiled shader program
+
+// Vertex shader: Handles the geometry layout on =
+the screen
+const vert =3D `
+  precision highp float; // Use high precision =
+for floating point numbers
+  attribute vec3 aPosition; // Receive the =
+vertex position from p5.js
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0); // Map vertices to the full clip space
+  }
+`;
+
+// Fragment shader: Calculates the color and logic for every pixel
+const frag =3D `
+  precision highp float; // Use high precision for fractal=
+ calculations
+  uniform vec2 u_resolution; // The width and height of the =
+canvas
+  uniform float u_time; // Time variable that resets every loop =
+cycle
+  uniform float u_zoom; // Dynamic magnification factor from the draw=
+ loop
+  uniform float u_opacity; // Transparency level for the fade-in/out =
+effect
+  uniform float u_seed; // Unique seed value for each sequence =
+iteration
+  uniform float u_rotation; // Rotation angle sent from the p5.js=
+ draw loop
+
+  // Function to generate a smooth rainbow color palette
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); // =
+Baseline brightness for the colors
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // =
+Contrast/Intensity of the color waves
+    vec3 c =3D vec3(1.0, 1.0, 1.0); =
+// Frequency of the color oscillations
+    vec3 d =3D vec3(0.0, 0.33, 0.=
+67); // RGB phase offsets to create the rainbow
+    return a + b * cos(6.=
+28318 * (t + d)); // Standard cosine-based color palette
+  }
+
+  // Creates radial symmetry and ensures a vertex points upwards
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p); // Calculate the =
+distance from the center point
+    float a =3D atan(p.y, p.x) - 1.5708; // =
+Calculate angle and rotate by 90 deg (PI/2)
+    float tau =3D 6.28318; // =
+Constant representing 2 * PI (a full circle)
+    a =3D mod(a, tau / n) - =
+tau / (n * 2.0); // Partition the circle into n slices
+    a =3D abs(a); // Mirror the coordinates within each slice
+    return vec2(cos(a), sin(a)) * r; // Revert back to 2D Cartesian =
+coordinates
+  }
+
+  void main() {
+    // Normalize coordinates so the center=
+ is (0,0) and range is approx -1 to 1
+    vec2 p =3D (gl_FragCoord.xy * 2.0=
+ - u_resolution.xy) / min(u_resolution.y, u_resolution.x);
+   =20
+    // Determine the number of mirror planes (3 to 8) based on the seed
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // Apply the upward-aligned radial symmetry
+
+    // Apply rotation to the coordinate space (the "camera" rotation)
+    float cosR =3D cos(u_rotation); // Calculate cosine of the rotation =
+angle
+    float sinR =3D sin(u_rotation); // Calculate sine of the rotation=
+ angle
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * cosR); //=
+ Standard 2D rotation matrix
+
+    p *=3D u_zoom; // Scale the coordinate =
+space by the current zoom level
+   =20
+    float t =3D u_time * 0.05; // =
+Set a slow time constant for the animation
+    vec3 color =3D vec3(0.0); //=
+ Start with a black canvas
+   =20
+    // Create a unique positional shift =
+for the fractal based on the seed
+    vec2 shift =3D vec2(0.8 + sin(u_seed =
+* 1.5) * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+
+    // Fractal loop: Iterate=
+ 7 times to create recursive complexity
+    for(int i =3D 0; i < 7; i++) {
+        // Fold the coordinate space based on inversion and movement
+        p =3D abs(p) / dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // Generate "Cantor Dust" visual particles using fract =
+logic
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0=
+.5));
+       =20
+        // Shift colors dynamically based on time, seed, =
+and distance
+        float colorShift =3D t + float(i) * 0.1 + length(p) * =
+0.2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift); // =
+Assign a rainbow hue
+       =20
+        float intensity =3D pow(float(i + =
+1), 1.5); // Increase light for deeper layers
+        color +=3D dustColor =
+* dust * intensity * 0.2; // Add dust glow to the total color
+       =20
+        // Render the neon transfinite lines using a specific thickness
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5; // =
+Add lines with offset hue
+    }
+
+    color *=3D 0.8; // Apply a master =
+brightness multiplier
+    color *=3D smoothstep(5.0, 0.0, length(p)); // =
+Apply a soft vignette to the edges
+   =20
+    // Final output: Apply the =
+opacity factor for smooth transitions
+    gl_FragColor =3D vec4(color * =
+u_opacity, 1.0);=20
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, =
+windowHeight, WEBGL); // Create a 3D context canvas
+  pixelDensity(1); // Set pixel density to 1 for consistent rendering
+  theShader =3D createShader(vert, frag); // Compile the shader code
+}
+
+function draw() {
+  shader(theShader); // Tell p5.js to use this specific =
+shader
+ =20
+  let absoluteTime =3D millis() / 1000.0; // Convert current =
+time to seconds
+ =20
+  let cycleDuration =3D 78.5; // Define the total =
+length of one sequence
+  let t =3D absoluteTime % cycleDuration; // =
+Calculate the current time within the loop. t =3D time
+ =20
+  let loopSeed =3D floor(absoluteTime / cycleDuration); // Track the number=
+ of cycles completed
+ =20
+  let zoomPulse =3D sin(t * 0.1); // Generate a =
+slow-moving sine wave for zooming
+  let currentZoom =3D map(zoomPulse, 1, =
+-1, 0.1, 3.0); // Map the sine wave to zoom levels (0.3 limit)
+
+  // --- Automatic Rotation Logic ---
+  let rotationAngle =3D 0; // =
+Initialize rotation angle to zero
+  let rotationStart =3D 47.12; // Start =
+rotation during the 2nd zoom-in (approx 47.1s)
+  if (t > rotationStart) { =
+// Check if we have passed the rotation threshold
+    randomSeed(loopSeed *=
+ 999); // Use loop seed to ensure consistent randomness per cycle
+    let direction =3D random() > 0.5 ? 1 : -1; // Randomly choose clockwise=
+ or counter-clockwise
+    // Map time from the start point to the end of =
+the loop to an angle (0 to 90 degrees)
+    rotationAngle =3D direction * =
+map(t, rotationStart, 78.5, 0, PI * 0.5);=20
+  }
+ =20
+  let opacity =3D 0.0; // Set initial transparency to zero
+ =20
+  if (t < 1.0) {
+    opacity =3D 0.0; // Keep the screen black for the =
+first second
+  } else if (t < 16.0) {
+    opacity =3D map(t, 1.0, 16.0, 0.0=
+, 1.0); // Gradually fade in over 15 seconds
+  } else if (t < 73.5) {
+    opacity =3D 1.0; // Keep full brightness during the main sequence
+  } else if (t < 78.5) {
+    opacity =3D map(t, 73.5, 78.5, 1.0, 0.0); // =
+Fade out over the final 5 seconds
+  }
+
+  // Set the uniform values to be =
+sent to the GPU
+  theShader.setUniform("u_resolution", [width, height]); //=
+ Send canvas dimensions
+  theShader.setUniform("u_time", t); // Send the =
+looping time value
+  theShader.setUniform("u_zoom", currentZoom); // Send =
+the current zoom state
+  theShader.setUniform("u_opacity", opacity); // =
+Send the current visibility level
+  theShader.setUniform("u_seed", =
+float(loopSeed)); // Send the cycle-specific seed
+  theShader.=
+setUniform("u_rotation", rotationAngle); // Send the calculated rotation =
+angle
+ =20
+  // Render a full-screen quad to display the shader
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Adjust canvas size if the =
+browser is resized
+}
+
+----_NmP-5e3354c7616d0b86-Part_1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+        <h2>=E3=83=95=E3=82=A3=E3=83=BC=E3=83=89=E3=83=90=E3=83=83=
+=E3=82=AF</h2>
+        <p><strong>=E8=A9=95=E4=BE=A1:</strong> =
+=E2=98=85=E2=98=85=E2=98=85=E2=98=86=E2=98=86 (3/5)</p>
+        <p><strong>=E3=82=B3=E3=83=A1=E3=83=B3=E3=83=88:</strong> =
+=E3=82=84=E3=81=A3=E3=81=A6=E3=81=BF=E3=81=9F=E6=89=80=E6=84=9F=E3=80=81=
+=E6=95=B0=E5=AD=A6=E7=9A=84=E3=81=AB=E9=AB=98=E5=BA=A6=E3=81=AA=E8=A9=B1=
+=E3=81=AB=E3=81=AA=E3=81=A3=E3=81=A6=E3=81=8F=E3=82=8B=E3=81=A8=E8=AA=AC=
+=E6=98=8E=E3=81=8C=E8=96=84=E3=81=8B=E3=81=A3=E3=81=9F=E3=82=8A=E3=80=81=
+=E5=89=8D=E6=8F=90=E3=81=8C=E3=82=8F=E3=81=8B=E3=82=89=E3=81=AA=E3=81=8F=
+=E3=81=A6=E7=B5=90=E5=B1=80=E8=84=B3=E6=AD=BB=E3=81=AE=E5=86=99=E7=B5=8C=
+=E3=82=B2=E3=83=BC=E3=83=A0=E3=81=AB=E3=81=AA=E3=81=A3=E3=81=A6=E3=81=97=
+=E3=81=BE=E3=81=86=E3=81=A8=E3=81=93=E3=82=8D=E3=81=AF=E3=81=82=E3=81=A3=
+=E3=81=9F=E3=81=91=E3=81=A9=E3=80=81=E3=81=9D=E3=82=8C=E3=81=A7=E3=82=82=
+=E6=A7=8B=E9=80=A0=E5=8C=96=E3=81=95=E3=82=8C=E3=81=A6=E8=AA=AC=E6=98=8E=
+=E3=81=95=E3=82=8C=E3=82=8B=E3=81=AE=E3=81=AF=E5=AC=89=E3=81=97=E3=81=84=
+=E3=80=82=E3=82=B9=E3=83=86=E3=83=83=E3=83=973-4=E3=81=8F=E3=82=89=
+=E3=81=84=E3=81=AE=E6=B5=81=E3=82=8C=E3=81=A7=E3=81=AF=E3=80=81=E3=81=BE=
+=E3=81=9A=E3=83=99=E3=83=BC=E3=82=B9=E3=81=A7=E3=82=B9=E3=82=B1=E3=83=BC=
+=E3=83=AB=E3=81=8C=E5=A4=89=E5=8C=96=E3=81=97=E3=81=A6=E3=81=84=E3=81=8F=
+=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=
+=E5=AE=9F=E8=A3=85=E3=81=97=E3=80=81=E6=AC=A1=E3=81=AB=E3=81=9D=E3=81=93=
+=E3=81=AB=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E3=83=AB=E3=83=BC=
+=E3=83=97=E3=82=92=E8=BC=89=E3=81=9B=E3=81=A6=E3=81=84=E3=81=8F=E3=80=81=
+=E3=81=A8=E3=81=84=E3=81=86=E6=84=9F=E3=81=98=E3=81=A0=E3=81=A3=E3=81=9F=
+=E3=82=93=E3=81=A0=E3=81=91=E3=81=A9=E3=80=81=E3=83=AC=E3=82=A4=E3=82=A2=
+=E3=82=A6=E3=83=88=E3=81=AE=E8=A9=B1=E3=81=A8=E8=A6=81=E7=B4=A0=E3=81=AE=
+=E8=A9=B1=E3=81=8C=E5=88=86=E9=9B=A2=E3=81=95=E3=82=8C=E3=81=A6=E3=81=84=
+=E3=81=A6=E3=80=81=E3=81=AA=E3=82=8B=E3=81=BB=E3=81=A9=E3=81=9D=E3=81=86=
+=E3=81=A7=E3=81=8D=E3=81=A6=E3=81=84=E3=82=8B=E3=81=AE=E3=81=8B=E3=80=81=
+=E3=81=A8=E3=81=84=E3=81=86=E3=81=AE=E3=81=8C=E5=9E=A3=E9=96=93=E8=A6=8B=
+=E3=81=88=E3=81=9F=E3=81=AE=E3=81=AF=E7=B5=90=E6=A7=8B=E6=A5=BD=E3=81=97=
+=E3=81=8B=E3=81=A3=E3=81=9F=E3=80=82
+
+=E6=9C=89=E5=90=8D=E3=81=AA=
+=E6=88=A6=E7=95=A5=E3=81=A8=E3=81=97=E3=81=A6=E8=A8=80=E8=AA=9E=E5=8C=96=
+=E3=81=95=E3=82=8C=E3=81=A6=E3=81=84=E3=82=8B=E3=82=A2=E3=83=AB=E3=82=B4=
+=E3=83=AA=E3=82=BA=E3=83=A0=E3=81=A0=E3=81=A3=E3=81=9F=E3=82=8A=E3=80=81=
+=E3=81=9D=E3=81=86=E3=81=84=E3=81=86=E3=81=AE=E3=81=8C=E3=83=91=E3=83=BC=
+=E3=83=84=E7=9A=84=E3=81=AB=E7=B5=84=E3=81=BF=E5=90=88=E3=82=8F=E3=81=95=
+=E3=81=A3=E3=81=A6=E3=81=84=E3=82=8B=E3=81=A8=E3=81=8B=E3=81=AA=E3=82=89=
+=E3=80=81=E3=81=9D=E3=81=86=E3=81=84=E3=81=86=E3=83=91=E3=83=BC=E3=83=84=
+=E5=8D=98=E4=BD=8D=E3=81=A7=E3=81=AE=E8=AA=AC=E6=98=8E=E3=82=82=E6=AC=B2=
+=E3=81=97=E3=81=84=E3=81=8B=E3=82=82=E3=80=82
+
+=E3=81=82=E3=81=A8=E3=81=AFU=
+I=E3=81=AE=E8=A9=B1=E3=81=A7=E8=A8=80=E3=81=86=E3=81=A8=E3=80=81=E3=82=AB=
+=E3=83=BC=E3=82=BD=E3=83=AB=E3=81=AE=E4=BD=8D=E7=BD=AE=E3=81=8C=E8=A6=8B=
+=E3=81=88=E3=81=A5=E3=82=89=E3=81=8F=E3=81=A6=E3=80=81=E4=BB=8A=E3=81=A9=
+=E3=81=93=E3=81=AB=E3=83=95=E3=82=A9=E3=83=BC=E3=82=AB=E3=82=B9=E3=81=95=
+=E3=82=8C=E3=81=A6=E3=81=84=E3=82=8B=E3=81=AE=E3=81=8B=E3=81=BF=E3=81=A5=
+=E3=82=89=E3=81=8B=E3=81=A3=E3=81=9F=E3=81=A8=E8=A8=80=E3=81=86=E3=81=AE=
+=E3=81=8C=E5=9C=B0=E5=91=B3=E3=81=AB=E3=81=97=E3=82=93=E3=81=A9=E3=81=8B=
+=E3=81=A3=E3=81=9F=E3=81=A8=E3=81=93=E3=82=8D=E3=80=82=E3=81=BE=E3=81=82=
+=E3=81=93=E3=81=86=E8=A8=80=E3=81=86=E3=81=AE=E3=81=AF=E3=81=8A=E3=81=84=
+=E3=81=8A=E3=81=84=E7=9B=B4=E3=81=97=E3=81=BE=E3=81=99=E2=80=A6=E3=80=82
+
+=E3=81=82=E3=81=A8=E3=81=AF=E3=80=81=E3=82=82=E3=81=97=E5=8B=95=E3=81=8B=
+=E3=81=AA=E3=81=8B=E3=81=A3=E3=81=9F=E3=81=A8=E3=81=8D=E3=81=AB=E3=80=81=
+=E3=83=9C=E3=82=BF=E3=83=B3=E3=82=92=E3=83=9D=E3=83=81=E3=83=83=E3=81=A8=
+=E6=8A=BC=E3=81=99=E3=81=A8=E3=81=A9=E3=81=93=E3=81=A7typo=E3=81=97=
+=E3=81=A6=E3=82=8B=E3=81=8B=E3=81=A8=E3=81=8B=E3=82=92=E6=95=99=E3=81=88=
+=E3=81=A6=E3=81=8F=E3=82=8C=E3=82=8B=E3=83=81=E3=82=A7=E3=83=83=E3=82=AF=
+=E6=A9=9F=E8=83=BD=E3=82=82=E3=81=82=E3=82=8B=E3=81=A8=E3=81=84=E3=81=84=
+=E3=81=8B=E3=82=82=E3=80=82=E3=82=A8=E3=83=A9=E3=83=BC=E3=83=A1=E3=83=83=
+=E3=82=BB=E3=83=BC=E3=82=B8=E3=82=82=E3=82=82=E3=81=86=E5=B0=91=E3=81=97=
+=E8=A9=B3=E7=B4=B0=E3=81=AB=E8=A8=98=E8=BF=B0=E3=81=99=E3=82=8B=E3=82=88=
+=E3=81=86=E3=81=AB=E3=81=95=E3=81=9B=E3=81=9F=E3=82=89=E3=80=81=E7=89=B9=
+=E5=AE=9A=E3=82=82=E6=97=A9=E3=81=84=E3=82=93=E3=81=98=E3=82=83=E3=81=AA=
+=E3=81=84=E3=81=8B=E3=81=97=E3=82=89=E3=80=82
+
+=E5=90=84=E3=82=B9=
+=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=80=81AI=E3=81=8C=E3=82=B3=
+=E3=83=A1=E3=83=B3=E3=83=88=E3=81=8F=E3=82=8C=E3=82=8B=E3=81=A8=E3=81=93=
+=E3=82=8D=E3=81=AF=E4=B8=80=E3=81=A4=E3=81=AE=E7=94=BB=E9=9D=A2=E3=81=AB=
+=E3=81=BE=E3=81=A8=E3=81=BE=E3=81=A3=E3=81=A6=E3=81=84=E3=81=9F=E6=96=B9=
+=E3=81=8C=E3=81=84=E3=81=84=E3=81=AE=E3=81=8B=E3=82=82=E3=80=82=E3=83=81=
+=E3=83=A3=E3=83=83=E3=83=88UI=E3=81=8C=E3=81=82=E3=81=A3=E3=81=A6=
+=E3=82=82=E3=81=84=E3=81=84=E3=81=8B=E3=82=82=E3=81=AD=E3=80=82</p>
+        <hr/>
+        <h2>=E5=85=A5=E5=8A=9B=E3=82=B3=E3=83=BC=E3=83=89</h2=
+>
+        <pre style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font=
+-size:12px;">let theShader; // Variable to store the compiled shader =
+program
+
+// Vertex shader: Handles the geometry layout on the screen
+const vert =3D `
+  precision highp float; // Use high precision for =
+floating point numbers
+  attribute vec3 aPosition; // Receive the vertex =
+position from p5.js
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.=
+0); // Map vertices to the full clip space
+  }
+`;
+
+// Fragment shader: =
+Calculates the color and logic for every pixel
+const frag =3D `
+  precision highp float; // Use high precision for fractal calculations
+  uniform vec2 u_resolution; // The width and height of the canvas
+  uniform float u_time; // Time variable that resets every loop cycle
+  uniform float u_zoom; // Dynamic magnification factor from the draw loop
+  uniform float u_opacity; // Transparency level for the fade-in/out effect
+  uniform float u_seed; // Unique seed value for each sequence iteration
+  uniform float u_rotation; // Rotation angle sent from the p5.js draw loop
+
+  // Function to generate a smooth rainbow color palette
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); // =
+Baseline brightness for the colors
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // =
+Contrast/Intensity of the color waves
+    vec3 c =3D vec3(1.0, 1.0, 1.0); =
+// Frequency of the color oscillations
+    vec3 d =3D vec3(0.0, 0.33, 0.=
+67); // RGB phase offsets to create the rainbow
+    return a + b * cos(6.=
+28318 * (t + d)); // Standard cosine-based color palette
+  }
+
+  // Creates radial symmetry and ensures a vertex points upwards
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p); // Calculate the =
+distance from the center point
+    float a =3D atan(p.y, p.x) - 1.5708; // =
+Calculate angle and rotate by 90 deg (PI/2)
+    float tau =3D 6.28318; // =
+Constant representing 2 * PI (a full circle)
+    a =3D mod(a, tau / n) - =
+tau / (n * 2.0); // Partition the circle into n slices
+    a =3D abs(a); // Mirror the coordinates within each slice
+    return vec2(cos(a), sin(a)) * r; // Revert back to 2D Cartesian =
+coordinates
+  }
+
+  void main() {
+    // Normalize coordinates so the center=
+ is (0,0) and range is approx -1 to 1
+    vec2 p =3D (gl_FragCoord.xy * 2.0=
+ - u_resolution.xy) / min(u_resolution.y, u_resolution.x);
+   =20
+    // Determine the number of mirror planes (3 to 8) based on the seed
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // Apply the upward-aligned radial symmetry
+
+    // Apply rotation to the coordinate space (the &quot;camera&quot; =
+rotation)
+    float cosR =3D cos(u_rotation); // Calculate cosine of the =
+rotation angle
+    float sinR =3D sin(u_rotation); // Calculate sine of the=
+ rotation angle
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * =
+cosR); // Standard 2D rotation matrix
+
+    p *=3D u_zoom; // Scale the =
+coordinate space by the current zoom level
+   =20
+    float t =3D u_time * =
+0.05; // Set a slow time constant for the animation
+    vec3 color =3D vec3(0.0); // Start with a black canvas
+   =20
+    // Create a unique positional shift for the fractal based on the seed
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5) * 0.1, 0.8 + cos(u_seed * 0=
+.7) * 0.1);
+
+    // Fractal loop: Iterate 7 times to create recursive =
+complexity
+    for(int i =3D 0; i &lt; 7; i++) {
+        // Fold the =
+coordinate space based on inversion and movement
+        p =3D abs(p) / =
+dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // Generate &quot;Cantor Dust&quot; visual particles using fract =
+logic
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0=
+.5));
+       =20
+        // Shift colors dynamically based on time, seed, =
+and distance
+        float colorShift =3D t + float(i) * 0.1 + length(p) * =
+0.2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift); // =
+Assign a rainbow hue
+       =20
+        float intensity =3D pow(float(i + =
+1), 1.5); // Increase light for deeper layers
+        color +=3D dustColor =
+* dust * intensity * 0.2; // Add dust glow to the total color
+       =20
+        // Render the neon transfinite lines using a specific thickness
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5; // =
+Add lines with offset hue
+    }
+
+    color *=3D 0.8; // Apply a master =
+brightness multiplier
+    color *=3D smoothstep(5.0, 0.0, length(p)); // =
+Apply a soft vignette to the edges
+   =20
+    // Final output: Apply the =
+opacity factor for smooth transitions
+    gl_FragColor =3D vec4(color * =
+u_opacity, 1.0);=20
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, =
+windowHeight, WEBGL); // Create a 3D context canvas
+  pixelDensity(1); // Set pixel density to 1 for consistent rendering
+  theShader =3D createShader(vert, frag); // Compile the shader code
+}
+
+function draw() {
+  shader(theShader); // Tell p5.js to use this specific =
+shader
+ =20
+  let absoluteTime =3D millis() / 1000.0; // Convert current =
+time to seconds
+ =20
+  let cycleDuration =3D 78.5; // Define the total =
+length of one sequence
+  let t =3D absoluteTime % cycleDuration; // =
+Calculate the current time within the loop
+ =20
+  let loopSeed =3D =
+floor(absoluteTime / cycleDuration); // Track the number of cycles =
+completed
+ =20
+  let zoomPulse =3D sin(t * 0.1); // Generate a slow-moving =
+sine wave for zooming
+  let currentZoom =3D map(zoomPulse, 1, -1, 0.1, 3.=
+0); // Map the sine wave to zoom levels (0.3 limit)
+
+  // --- Automatic Rotation Logic ---
+  let rotationAngle =3D 0; // =
+Initialize rotation angle to zero
+  let rotationStart =3D 47.12; // Start =
+rotation during the 2nd zoom-in (approx 47.1s)
+  if (t &gt; rotationStart) =
+{ // Check if we have passed the rotation threshold
+    randomSeed(loopSeed * 999); // Use loop seed to ensure consistent =
+randomness per cycle
+    let direction =3D random() &gt; 0.5 ? 1 : -1; // =
+Randomly choose clockwise or counter-clockwise
+    // Map time from the =
+start point to the end of the loop to an angle (0 to 90 degrees)
+    rotationAngle =3D direction * map(t, rotationStart, 78.5, 0, PI * 0.=
+5);=20
+  }
+ =20
+  let opacity =3D 0.0; // Set initial transparency to zero
+ =20
+  if (t &lt; 1.0) {
+    opacity =3D 0.0; // Keep the screen black for =
+the first second
+  } else if (t &lt; 16.0) {
+    opacity =3D map(t, 1.0, 16=
+.0, 0.0, 1.0); // Gradually fade in over 15 seconds
+  } else if (t &lt; 73.5) {
+    opacity =3D 1.0; // Keep full brightness =
+during the main sequence
+  } else if (t &lt; 78.5) {
+    opacity =3D map(t, 73.5, 78.5, 1.0, 0.0); // Fade out over the final 5 =
+seconds
+  }
+
+  // Set the uniform values to be sent to the GPU
+  theShader.setUniform(&quot;u_resolution&quot;, [width, height]); // Send =
+canvas dimensions
+  theShader.setUniform(&quot;u_time&quot;, t); // Send =
+the looping time value
+  theShader.setUniform(&quot;u_zoom&quot;, =
+currentZoom); // Send the current zoom state
+  theShader.=
+setUniform(&quot;u_opacity&quot;, opacity); // Send the current visibility =
+level
+  theShader.setUniform(&quot;u_seed&quot;, float(loopSeed)); // Send =
+the cycle-specific seed
+  theShader.setUniform(&quot;u_rotation&quot;, =
+rotationAngle); // Send the calculated rotation angle
+ =20
+  // Render a full-screen quad to display the shader
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Adjust canvas size if the =
+browser is resized
+}</pre>
+        <hr/>
+        <h2>=E7=94=9F=E6=88=90=
+=E3=81=95=E3=82=8C=E3=81=9F=E3=82=B9=E3=83=86=E3=83=83=E3=83=97 (9)</h2>
+        <h3>Step 1</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81p5.js=E3=81=A7WebGL=E3=82=AD=E3=83=A3=
+=E3=83=B3=E3=83=90=E3=82=B9=E3=81=A8=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=82=92=E3=82=BB=E3=83=83=E3=83=88=E3=82=A2=E3=83=83=E3=83=97=
+=E3=81=99=E3=82=8B=E6=9C=80=E5=B0=8F=E9=99=90=E3=81=AE=E3=82=B3=E3=83=BC=
+=E3=83=89=E3=82=92=E8=A8=98=E8=BF=B0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E7=94=BB=E9=9D=A2=E5=85=A8=E4=BD=93=E3=82=92=E8=A6=86=E3=81=86=E5=9B=9B=
+=E8=A7=92=E5=BD=A2=E3=81=AB=E3=80=81=E5=8D=98=E8=89=B2=EF=BC=88=E8=B5=A4=
+=EF=BC=89=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=99=E3=82=8B=E3=81=A0=E3=81=91=
+=E3=81=AE=E5=8D=98=E7=B4=94=E3=81=AA=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E3=81=93=E3=82=8C=E3=81=8C=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=83=97=E3=83=AD=E3=82=B0=E3=83=A9=E3=83=9F=E3=83=B3=E3=82=B0=E3=81=AE=
+=E5=87=BA=E7=99=BA=E7=82=B9=E3=81=A7=E3=81=99=E3=80=82</p><pre =
+style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font-size:12px;">le=
+t theShader; // =E3=82=B3=E3=83=B3=E3=83=91=E3=82=A4=E3=83=AB=E3=81=95=
+=E3=82=8C=E3=81=9F=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=83=97=
+=E3=83=AD=E3=82=B0=E3=83=A9=E3=83=A0=E3=82=92=E6=A0=BC=E7=B4=8D=E3=81=99=
+=E3=82=8B=E5=A4=89=E6=95=B0
+
+// =E9=A0=82=E7=82=B9=E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=EF=BC=9A=E3=82=B8=E3=82=AA=E3=83=A1=E3=83=88=
+=E3=83=AA=E3=81=AE=E3=83=AC=E3=82=A4=E3=82=A2=E3=82=A6=E3=83=88=E3=82=92=
+=E5=87=A6=E7=90=86=E3=81=97=E3=81=BE=E3=81=99
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition; // p5.=
+js=E3=81=8B=E3=82=89=E9=A0=82=E7=82=B9=E4=BD=8D=E7=BD=AE=E3=82=92=
+=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+// =
+=E3=83=95=E3=83=A9=E3=82=B0=E3=83=A1=E3=83=B3=E3=83=88=E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=EF=BC=9A=E3=83=94=E3=82=AF=E3=82=BB=E3=83=AB=
+=E3=81=94=E3=81=A8=E3=81=AE=E8=89=B2=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=
+=E3=81=BE=E3=81=99
+const frag =3D `
+  precision highp float;
+  void main() {
+    // =E5=9B=BA=E5=AE=9A=E8=89=B2=EF=BC=88=E8=B5=A4=
+=EF=BC=89=E3=81=A7=E7=94=BB=E9=9D=A2=E3=82=92=E5=A1=97=E3=82=8A=E3=81=A4=
+=E3=81=B6=E3=81=97=E3=81=BE=E3=81=99
+    gl_FragColor =3D vec4(1.0, 0.0, 0.=
+0, 1.0);
+  }
+`;
+
+function setup() {
+  // WEBGL=E3=83=A2=E3=83=BC=E3=83=89=
+=E3=81=A7=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=82=92=E4=BD=9C=
+=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+  createCanvas(windowWidth, =
+windowHeight, WEBGL);
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=82=B3=E3=83=BC=E3=83=89=E3=82=92=E3=82=B3=E3=83=B3=E3=83=91=E3=82=A4=
+=E3=83=AB=E3=81=97=E3=81=BE=E3=81=99
+  theShader =3D createShader(vert, =
+frag);
+}
+
+function draw() {
+  // =E4=BD=9C=E6=88=90=E3=81=97=E3=81=9F=
+=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=82=92=E9=81=A9=E7=94=A8=
+=E3=81=97=E3=81=BE=E3=81=99
+  shader(theShader);
+ =20
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=8C=E6=8F=8F=
+=E7=94=BB=E3=81=95=E3=82=8C=E3=82=8B=E3=82=88=E3=81=86=E3=80=81=E7=94=BB=
+=E9=9D=A2=E5=85=A8=E4=BD=93=E3=82=92=E8=A6=86=E3=81=86=E5=9B=9B=E8=A7=92=
+=E5=BD=A2=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  // =E3=82=A6=E3=82=A3=E3=83=B3=E3=83=89=E3=82=A6=E3=82=B5=E3=82=A4=
+=E3=82=BA=E3=81=8C=E5=A4=89=E6=9B=B4=E3=81=95=E3=82=8C=E3=81=9F=E3=82=89=
+=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=82=92=E3=83=AA=E3=82=B5=
+=E3=82=A4=E3=82=BA=E3=81=97=E3=81=BE=E3=81=99
+  resizeCanvas(windowWidth, =
+windowHeight);
+}
+</pre><h3>Step 2</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=
+=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=82=B7=E3=82=A7=
+=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB `u_resolution` =
+=E3=81=A8=E3=81=84=E3=81=86uniform=E5=A4=89=E6=95=B0=E3=82=92=E8=BF=BD=
+=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=93=E3=82=8C=E3=81=AFp5.=
+js=E3=81=8B=E3=82=89=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=
+=E3=81=AE=E8=A7=A3=E5=83=8F=E5=BA=A6=EF=BC=88=E5=B9=85=E3=81=A8=E9=AB=98=
+=E3=81=95=EF=BC=89=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=81=AB=E4=BC=9D=E3=81=88=E3=82=8B=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=
+=E3=80=82=E3=81=93=E3=81=AE=E8=A7=A3=E5=83=8F=E5=BA=A6=E3=82=92=E4=BD=BF=
+=E3=81=A3=E3=81=A6=E3=83=94=E3=82=AF=E3=82=BB=E3=83=AB=E5=BA=A7=E6=A8=99=
+=E3=82=920.0=EF=BD=9E1.0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E6=AD=A3=
+=E8=A6=8F=E5=8C=96=E3=81=97=E3=80=81=E4=BD=8D=E7=BD=AE=E3=81=AB=E5=BF=9C=
+=E3=81=98=E3=81=9F=E3=82=B0=E3=83=A9=E3=83=87=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82</p=
+><pre style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font-size:12p=
+x;">let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  // p5.js=E3=81=8B=E3=82=89=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=
+=E3=82=B9=E3=81=AE=E8=A7=A3=E5=83=8F=E5=BA=A6=E3=82=92=E5=8F=97=E3=81=91=
+=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+  uniform vec2 u_resolution;
+
+  void main() {
+    // gl_FragCoord.xy=E3=81=AF=E3=83=94=E3=82=AF=
+=E3=82=BB=E3=83=AB=E3=81=AE=E3=82=B9=E3=82=AF=E3=83=AA=E3=83=BC=E3=83=B3=
+=E5=BA=A7=E6=A8=99=E3=81=A7=E3=81=99 (=E4=BE=8B: =E5=B7=A6=E4=B8=8B=
+=E9=9A=85=E3=81=8C(0,0))
+    // u_resolution=E3=81=A7=E5=89=B2=E3=82=8B=
+=E3=81=93=E3=81=A8=E3=81=A7=E3=80=81=E5=BA=A7=E6=A8=99=E3=82=920.=
+0=E3=81=8B=E3=82=891.0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E6=AD=A3=
+=E8=A6=8F=E5=8C=96=E3=81=97=E3=81=BE=E3=81=99
+    vec2 uv =3D gl_FragCoord.=
+xy / u_resolution.xy;
+   =20
+    // =E6=AD=A3=E8=A6=8F=E5=8C=96=E3=81=95=
+=E3=82=8C=E3=81=9Fx=E5=BA=A7=E6=A8=99=E3=82=92=E8=B5=A4=E3=80=81y=
+=E5=BA=A7=E6=A8=99=E3=82=92=E7=B7=91=E3=81=AE=E6=88=90=E5=88=86=E3=81=AB=
+=E5=89=B2=E3=82=8A=E5=BD=93=E3=81=A6=E3=81=A6=E3=82=B0=E3=83=A9=E3=83=87=
+=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=E4=BD=9C=E3=82=8A=E3=81=BE=
+=E3=81=99
+    gl_FragColor =3D vec4(uv.x, uv.y, 0.5, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=ABuniform=E5=A4=89=E6=95=B0=E3=81=A8=E3=81=97=E3=81=A6=
+=E3=82=AD=E3=83=A3=E3=83=B3=E3=83=90=E3=82=B9=E3=81=AE=E5=B9=85=E3=81=A8=
+=E9=AB=98=E3=81=95=E3=82=92=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99
+  theShader.setUniform(&quot;u_resolution&quot;, [width, height]);
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step =
+3</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=81=AF=E3=80=81=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB =
+`u_time` =E3=81=A8=E3=81=84=E3=81=86uniform=E5=A4=89=E6=95=B0=E3=82=92=
+=E8=BF=BD=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=93=E3=82=8C=
+=E3=81=AFp5.js=E3=81=8B=E3=82=89=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=
+=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E4=BC=9D=
+=E3=81=88=E3=82=8B=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=E3=80=82=E3=81=93=
+=E3=81=AE=E6=99=82=E9=96=93=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A6=E8=89=B2=
+=E3=81=AE=E5=80=A4=E3=82=92=E5=A4=89=E5=8C=96=E3=81=95=E3=81=9B=E3=82=8B=
+=E3=81=93=E3=81=A8=E3=81=A7=E3=80=81=E9=9D=99=E7=9A=84=E3=81=AA=E3=82=B0=
+=E3=83=A9=E3=83=87=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=82=92=E5=8B=95=
+=E7=9A=84=E3=81=AA=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82</p><pre =
+style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font-size:12px;">le=
+t theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time; // p5.=
+js=E3=81=8B=E3=82=89=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=E3=82=92=
+=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+
+  void main() {
+    vec2 uv =3D gl_FragCoord.xy / u_resolution.xy;
+   =20
+    // sin(u_time)=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A6=E3=80=81=E6=99=82=
+=E9=96=93=E7=B5=8C=E9=81=8E=E3=81=A7=E9=9D=92=E6=88=90=E5=88=86=E3=81=8C=
+=E6=BB=91=E3=82=89=E3=81=8B=E3=81=AB=E5=A4=89=E5=8C=96=E3=81=99=E3=82=8B=
+=E3=82=88=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99
+    float blue =3D (sin(u_time * 2.0) + 1.0) / 2.0; // 0.0-1.=
+0=E3=81=AE=E7=AF=84=E5=9B=B2=E3=81=AB=E3=83=9E=E3=83=83=E3=83=94=E3=83=B3=
+=E3=82=B0
+   =20
+    gl_FragColor =3D vec4(uv.x, uv.y, blue, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  // absoluteTime =3D =E3=83=97=E3=83=AD=
+=E3=82=B0=E3=83=A9=E3=83=A0=E9=96=8B=E5=A7=8B=E3=81=8B=E3=82=89=E3=81=AE=
+=E7=B5=8C=E9=81=8E=E6=99=82=E9=96=93=EF=BC=88=E7=A7=92=EF=BC=89
+  let absoluteTime =3D millis() / 1000.0;
+ =20
+  theShader.=
+setUniform(&quot;u_resolution&quot;, [width, height]);
+  // =E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=ABuniform=
+=E5=A4=89=E6=95=B0=E3=81=A8=E3=81=97=E3=81=A6=E7=B5=8C=E9=81=8E=E6=99=82=
+=E9=96=93=E3=82=92=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99
+  theShader.setUniform(&quot;u_time&quot;, absoluteTime);
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step =
+4</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=81=AF=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E5=9B=B3=
+=E5=BD=A2=E3=81=AE=E5=9F=BA=E6=9C=AC=E6=A7=8B=E9=80=A0=E3=82=92=E5=B0=8E=
+=E5=85=A5=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=82=B7=E3=82=A7=E3=83=BC=
+=E3=83=80=E3=83=BC=E5=86=85=E3=81=A7=E5=BA=A7=E6=A8=99=E7=B3=BB=E3=82=92=
+=E7=94=BB=E9=9D=A2=E4=B8=AD=E5=BF=83=E3=81=8C=E5=8E=9F=E7=82=B9=E3=81=AB=
+=E3=81=AA=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E5=A4=89=E6=8F=9B=E3=81=97=
+=E3=80=81=E5=8F=8D=E8=BB=A2=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=
+=E3=81=AE=E5=9F=BA=E6=9C=AC=E7=9A=84=E3=81=AA=E8=A8=88=E7=AE=97=E5=BC=8F=
+=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=BE=
+=E3=81=9F=E3=80=81p5.js=E5=81=B4=E3=81=A7=E6=99=82=E9=96=93=E3=81=AB=
+=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=9F=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=A4=
+=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=E3=80=81`u_zoom`=E3=81=A8=E3=81=97=
+=E3=81=A6=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=
+=E3=81=97=E3=81=A6=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82</p><pre =
+style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font-size:12px;">le=
+t theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom; // p5.js=E3=81=8B=E3=82=89=E3=82=BA=E3=83=BC=
+=E3=83=A0=E5=80=8D=E7=8E=87=E3=82=92=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=
+=E3=81=BE=E3=81=99
+
+  void main() {
+    // =E5=BA=A7=E6=A8=99=E3=82=92=
+=E6=AD=A3=E8=A6=8F=E5=8C=96=E3=81=97=E3=80=81=E4=B8=AD=E5=BF=83=E3=81=8C(0,=
+0)=E3=81=AB=E3=81=AA=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E8=AA=BF=
+=E6=95=B4=E3=81=97=E3=81=BE=E3=81=99
+    // =E3=82=A2=E3=82=B9=E3=83=9A=
+=E3=82=AF=E3=83=88=E6=AF=94=E3=82=92=E7=B6=AD=E6=8C=81=E3=81=99=E3=82=8B=
+=E3=81=9F=E3=82=81=E3=80=81=E7=9F=AD=E3=81=84=E6=96=B9=E3=81=AE=E8=BE=BA=
+=E3=82=92=E5=9F=BA=E6=BA=96=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+   =20
+    p *=3D u_zoom; // =E5=BA=A7=E6=A8=99=
+=E7=A9=BA=E9=96=93=E3=82=92=E3=82=BA=E3=83=BC=E3=83=A0=E3=81=97=E3=81=BE=
+=E3=81=99
+   =20
+    vec3 color =3D vec3(0.0); // =E6=8F=8F=E7=94=BB=
+=E8=89=B2=E3=82=92=E9=BB=92=E3=81=A7=E5=88=9D=E6=9C=9F=E5=8C=96=E3=81=97=
+=E3=81=BE=E3=81=99
+   =20
+    // =E5=8F=8D=E8=BB=A2=E3=83=95=E3=83=A9=
+=E3=82=AF=E3=82=BF=E3=83=AB=E3=81=AE=E5=9F=BA=E6=9C=AC=E7=9A=84=E3=81=AA=
+=E8=A8=88=E7=AE=97=E5=BC=8F=E3=82=921=E5=9B=9E=E9=81=A9=E7=94=A8=E3=81=97=
+=E3=81=BE=E3=81=99
+    p =3D abs(p) / dot(p, p) - 0.8;
+   =20
+    // =E8=A8=88=E7=AE=97=E7=B5=90=E6=9E=9C=E3=81=AEp=E3=81=AE=E9=95=B7=
+=E3=81=95=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E6=98=8E=E3=82=8B=
+=E3=81=95=E3=82=92=E6=B1=BA=E5=AE=9A=E3=81=97=E3=80=81=E5=BD=A2=E7=8A=B6=
+=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+    float brightness =3D smoothstep(1.0, 0.0, length(p));
+    color =3D vec3(brightness);
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5; // cycleDuration =3D =
+1=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=AE=E9=95=B7=E3=81=95
+  let t =3D absoluteTime % cycleDuration; // t =3D =E7=8F=BE=E5=9C=A8=
+=E3=81=AE=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E5=86=85=E3=81=AE=E6=99=82=
+=E9=96=93
+ =20
+  // =E6=99=82=E9=96=93=E3=81=AB=E5=BF=9C=E3=81=98=
+=E3=81=A6=E3=82=B5=E3=82=A4=E3=83=B3=E6=B3=A2=E3=82=92=E7=94=9F=E6=88=90=
+=E3=81=97=E3=80=81=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=8D=E7=8E=87=E3=82=92=
+=E8=A8=88=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+  let zoomPulse =3D sin(t * 0=
+.1);
+  let currentZoom =3D map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform(&quot;u_resolution&quot;, [width, height]);
+  theShader.setUniform(&quot;u_time&quot;, t);
+  theShader.=
+setUniform(&quot;u_zoom&quot;, currentZoom); // =E8=A8=88=E7=AE=97=
+=E3=81=97=E3=81=9F=E3=82=BA=E3=83=BC=E3=83=A0=E5=80=8D=E7=8E=87=E3=82=92=
+=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=
+=E3=81=BE=E3=81=99
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step 5</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=
+=E3=83=AB=E8=A8=88=E7=AE=97=E3=82=92for=E3=83=AB=E3=83=BC=E3=83=97=
+=E3=81=A7=E8=A4=87=E6=95=B0=E5=9B=9E=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=
+=E3=80=81=E3=82=88=E3=82=8A=E8=A4=87=E9=9B=91=E3=81=AA=E5=BD=A2=E7=8A=B6=
+=E3=82=92=E4=BD=9C=E3=82=8A=E5=87=BA=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E8=89=B2=E4=BB=98=E3=81=91=E3=81=AE=E3=81=9F=E3=82=81=E3=81=AB`getRainbow`=
+=E9=96=A2=E6=95=B0=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=80=81=E8=A8=88=
+=E7=AE=97=E3=81=AE=E6=B7=B1=E3=81=95=E3=82=84=E4=BD=8D=E7=BD=AE=E3=81=AB=
+=E5=BF=9C=E3=81=98=E3=81=A6=E8=89=B2=E3=81=8C=E5=A4=89=E5=8C=96=E3=81=99=
+=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=
+=E3=81=BE=E3=81=9F=E3=80=81`u_seed`=E3=82=92=E5=B0=8E=E5=85=A5=E3=81=97=
+=E3=80=81=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=
+=E3=81=AE=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=94=E3=81=A8=E3=81=AB=
+=E7=95=B0=E3=81=AA=E3=82=8B=E6=A8=A1=E6=A7=98=E3=81=8C=E7=94=9F=E6=88=90=
+=E3=81=95=E3=82=8C=E3=82=8B=E3=82=88=E3=81=86=E3=81=AB=E3=81=97=E3=81=BE=
+=E3=81=99=E3=80=82</p><pre style=3D"background:#f4f4f4;padding:8px;overflow=
+-x:auto;font-size:12px;">let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed; // =
+p5.js=E3=81=8B=E3=82=89=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=94=
+=E3=81=A8=E3=81=AE=E3=82=B7=E3=83=BC=E3=83=89=E5=80=A4=E3=82=92=E5=8F=97=
+=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+
+  // t (0.0-1.0) =
+=E3=81=AE=E5=80=A4=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E8=99=B9=
+=E8=89=B2=E3=82=92=E7=94=9F=E6=88=90=E3=81=99=E3=82=8B=E9=96=A2=E6=95=B0
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); // a =3D =
+=E3=83=99=E3=83=BC=E3=82=B9=E3=81=AE=E6=98=8E=E3=82=8B=E3=81=95
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // b =3D =E3=82=B3=E3=83=B3=E3=83=88=
+=E3=83=A9=E3=82=B9=E3=83=88
+    vec3 c =3D vec3(1.0, 1.0, 1.0); // c =3D =
+=E8=89=B2=E3=81=AE=E5=91=A8=E6=B3=A2=E6=95=B0
+    vec3 d =3D vec3(0.0, 0.33=
+, 0.67); // d =3D =E4=BD=8D=E7=9B=B8=E3=82=AA=E3=83=95=E3=82=BB=E3=83=83=
+=E3=83=88
+    return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / =
+min(u_resolution.y, u_resolution.x);
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05; // t =3D =E3=82=A2=E3=83=8B=E3=83=A1=
+=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E7=94=A8=E3=81=AE=E3=82=86=E3=81=A3=
+=E3=81=8F=E3=82=8A=E3=81=97=E3=81=9F=E6=99=82=E9=96=93
+    vec3 color =3D vec3(0.0);
+   =20
+    // u_seed=E3=81=AB=E5=9F=BA=
+=E3=81=A5=E3=81=84=E3=81=A6=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=
+=E3=81=AE=E5=BD=A2=E7=8A=B6=E3=82=92=E5=BE=AE=E5=A6=99=E3=81=AB=E5=A4=89=
+=E5=8C=96=E3=81=95=E3=81=9B=E3=82=8B=E3=81=9F=E3=82=81=E3=81=AE=E3=82=B7=
+=E3=83=95=E3=83=88=E5=80=A4
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5)=
+ * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+
+    // =E8=A8=88=E7=AE=97=E3=82=92=
+7=E5=9B=9E=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=E3=81=A6=E3=80=81=E8=A4=87=
+=E9=9B=91=E3=81=AA=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E5=BD=A2=
+=E7=8A=B6=E3=82=92=E7=94=9F=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+    for(int i =3D 0; i &lt; 7; i++) {
+        p =3D abs(p) / dot(p, p) - =
+(shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // =
+p=E3=81=AE=E9=95=B7=E3=81=95=E3=81=A8=E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=
+=E5=9B=9E=E6=95=B0=E3=81=AB=E5=9F=BA=E3=81=A5=E3=81=84=E3=81=A6=E8=89=B2=
+=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.2 + u_seed =
+* 0.1;
+       =20
+        // =E7=B9=B0=E3=82=8A=E8=BF=94=E3=81=97=
+=E3=81=8C=E6=B7=B1=E3=81=8F=E3=81=AA=E3=82=8B=E3=81=BB=E3=81=A9=E6=98=8E=
+=E3=82=8B=E3=81=95=E3=82=92=E5=A2=97=E3=81=97=E3=80=81=E8=89=B2=E3=82=92=
+=E5=8A=A0=E7=AE=97=E3=81=97=E3=81=BE=E3=81=99
+        float intensity =3D =
+pow(float(i + 1), 1.5);
+        color +=3D getRainbow(colorShift) * (1.0 / =
+length(p)) * 0.05 * intensity;
+    }
+
+    gl_FragColor =3D vec4(color, 1.=
+0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, =
+WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time (=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=
+=E5=86=85=E3=81=AE=E6=99=82=E9=96=93)
+ =20
+  // =E4=BD=95=E3=82=B5=
+=E3=82=A4=E3=82=AF=E3=83=AB=E7=9B=AE=E3=81=8B=E3=82=92=E7=A4=BA=E3=81=99=
+=E3=82=B7=E3=83=BC=E3=83=89=E5=80=A4=E3=82=92=E8=A8=88=E7=AE=97=E3=81=97=
+=E3=81=BE=E3=81=99
+  let loopSeed =3D floor(absoluteTime / cycleDuration);
+ =20
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D map(zoomPulse,=
+ 1, -1, 0.1, 3.0);
+
+  theShader.setUniform(&quot;u_resolution&quot;, [width=
+, height]);
+  theShader.setUniform(&quot;u_time&quot;, t);
+  theShader.setUniform(&quot;u_zoom&quot;, currentZoom);
+  theShader.setUniform(&quot;u_seed&quot;, float(loopSeed)); // =
+=E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E3=82=B7=E3=83=BC=E3=83=89=E5=80=A4=
+=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=
+=E3=81=97=E3=81=BE=E3=81=99
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step 6</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=
+=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81`fold`=E3=81=A8=E3=81=84=E3=81=86=
+=E9=96=A2=E6=95=B0=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=
+=E3=81=AB=E8=BF=BD=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=81=93=
+=E3=82=8C=E3=81=AF=E5=BA=A7=E6=A8=99=E7=A9=BA=E9=96=93=E3=82=92=E6=8A=98=
+=E3=82=8A=E3=81=9F=E3=81=9F=E3=82=93=E3=81=A7=E5=8F=8D=E8=BB=A2=E3=81=95=
+=E3=81=9B=E3=82=8B=E3=81=93=E3=81=A8=E3=81=A7=E3=80=81=E4=B8=87=E8=8F=AF=
+=E9=8F=A1=E3=81=AE=E3=82=88=E3=81=86=E3=81=AA=E6=94=BE=E5=B0=84=E7=8A=B6=
+=E3=81=AE=E5=AF=BE=E7=A7=B0=E3=83=91=E3=82=BF=E3=83=BC=E3=83=B3=E3=82=92=
+=E4=BD=9C=E3=82=8A=E5=87=BA=E3=81=99=E5=BD=B9=E5=89=B2=E3=81=A7=E3=81=99=
+=E3=80=82`u_seed`=E3=81=AE=E5=80=A4=E3=81=AB=E3=82=88=E3=81=A3=E3=81=A6=
+=E5=88=86=E5=89=B2=E6=95=B0=E3=81=8C=E5=A4=89=E3=82=8F=E3=82=8A=E3=80=81=
+=E3=82=B5=E3=82=A4=E3=82=AF=E3=83=AB=E3=81=94=E3=81=A8=E3=81=AB=E7=95=B0=
+=E3=81=AA=E3=82=8B=E5=AF=BE=E7=A7=B0=E6=80=A7=E3=81=8C=E7=8F=BE=E3=82=8C=
+=E3=81=BE=E3=81=99=E3=80=82</p><pre style=3D"background:#f4f4f4;padding:8px=
+;overflow-x:auto;font-size:12px;">let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c *=
+ t + d));
+  }
+
+  // =E3=82=AB=E3=83=AC=E3=82=A4=E3=83=89=E3=82=B9=
+=E3=82=B3=E3=83=BC=E3=83=97=EF=BC=88=E4=B8=87=E8=8F=AF=E9=8F=A1=EF=BC=89=
+=E3=81=AE=E3=82=88=E3=81=86=E3=81=AA=E6=94=BE=E5=B0=84=E7=8A=B6=E3=81=AE=
+=E5=AF=BE=E7=A7=B0=E6=80=A7=E3=82=92=E4=BD=9C=E3=82=8A=E5=87=BA=E3=81=99=
+=E9=96=A2=E6=95=B0
+  vec2 fold(vec2 p, float n) { // n =3D =
+=E5=88=86=E5=89=B2=E6=95=B0
+    float r =3D length(p); // r =3D =
+=E4=B8=AD=E5=BF=83=E3=81=8B=E3=82=89=E3=81=AE=E8=B7=9D=E9=9B=A2
+    float a =3D atan(p.y, p.x) - 1.5708; // a =3D =E8=A7=92=E5=BA=A6 =
+(90=E5=BA=A6=E5=9B=9E=E8=BB=A2)
+    float tau =3D 6.28318; // tau =3D 2 * =
+PI
+    a =3D mod(a, tau / n) - tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+   =20
+    // u_seed=E3=81=AB=E5=9F=BA=E3=81=A5=
+=E3=81=84=E3=81=A6=E9=8F=A1=E3=81=AE=E6=9E=9A=E6=95=B0=EF=BC=88=E5=88=86=
+=E5=89=B2=E6=95=B0=EF=BC=89=E3=82=92=E6=B1=BA=E5=AE=9A=E3=81=97=E3=81=BE=
+=E3=81=99
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // =E5=BA=A7=E6=A8=99=E3=81=AB=E3=82=AB=
+=E3=83=AC=E3=82=A4=E3=83=89=E3=82=B9=E3=82=B3=E3=83=BC=E3=83=97=E5=8A=B9=
+=E6=9E=9C=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=BE=E3=81=99
+
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.=
+5) * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+    for(int i =3D 0; i &lt; 7; =
+i++) {
+        p =3D abs(p) / dot(p, p) - (shift + sin(t * 2.0 + u_seed) * =
+0.05);
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.2 + =
+u_seed * 0.1;
+        float intensity =3D pow(float(i + 1), 1.5);
+        color +=3D getRainbow(colorShift) * (1.0 / length(p)) * 0.05 * =
+intensity;
+    }
+   =20
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time
+  let loopSeed =3D floor(absoluteTime / =
+cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D =
+map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform(&quot;u_resolution=
+&quot;, [width, height]);
+  theShader.setUniform(&quot;u_time&quot;, t);
+  theShader.setUniform(&quot;u_zoom&quot;, currentZoom);
+  theShader.setUniform(&quot;u_seed&quot;, float(loopSeed));
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step =
+7</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=81=AF=E3=80=81=E3=83=95=E3=83=A9=E3=82=AF=E3=82=BF=E3=83=AB=E3=83=AB=
+=E3=83=BC=E3=83=97=E5=86=85=E3=81=AE=E6=8F=8F=E7=94=BB=E3=83=AD=E3=82=B8=
+=E3=83=83=E3=82=AF=E3=82=92=E3=82=88=E3=82=8A=E8=A4=87=E9=9B=91=E3=81=AB=
+=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E5=8D=98=E7=B4=94=E3=81=AA=E8=89=B2=
+=E4=BB=98=E3=81=91=E3=81=AE=E4=BB=A3=E3=82=8F=E3=82=8A=E3=81=AB=E3=80=81=
+=E7=B2=92=E5=AD=90=E7=8A=B6=E3=81=AE=E3=80=8E=E3=83=80=E3=82=B9=E3=83=88=
+=E3=80=8F=E5=8A=B9=E6=9E=9C=E3=81=A8=E3=80=81=E3=83=8D=E3=82=AA=E3=83=B3=
+=E3=81=AE=E3=82=88=E3=81=86=E3=81=AA=E3=80=8E=E3=83=A9=E3=82=A4=E3=83=B3=
+=E3=80=8F=E5=8A=B9=E6=9E=9C=E3=82=92=E7=94=9F=E6=88=90=E3=81=97=E3=81=A6=
+=E9=87=8D=E3=81=AD=E5=90=88=E3=82=8F=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82=
+=E3=81=93=E3=82=8C=E3=81=AB=E3=82=88=E3=82=8A=E3=80=81=E8=A6=96=E8=A6=9A=
+=E7=9A=84=E3=81=AB=E8=B1=8A=E3=81=8B=E3=81=A7=E6=B7=B1=E3=81=BF=E3=81=AE=
+=E3=81=82=E3=82=8B=E8=A1=A8=E7=8F=BE=E3=81=8C=E5=8F=AF=E8=83=BD=E3=81=AB=
+=E3=81=AA=E3=82=8A=E3=81=BE=E3=81=99=E3=80=82</p><pre =
+style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;font-size:12px;">le=
+t theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+
+  vec3 getRainbow(float t)=
+ {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c * t + d));
+  }
+
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p);
+    float a =3D atan(p.y, p.x) - 1.5708;
+    float tau =3D 6.28318;
+    a =3D mod(a, tau / n) - tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors);
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5) * 0.1, 0.8 + cos(u_seed * 0=
+.7) * 0.1);
+
+    for(int i =3D 0; i &lt; 7; i++) {
+        p =3D abs(p) / =
+dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // --- =E3=81=93=E3=81=93=E3=81=8B=E3=82=89=E6=8F=8F=E7=94=BB=
+=E3=83=AD=E3=82=B8=E3=83=83=E3=82=AF=E3=82=92=E5=A4=89=E6=9B=B4 ---
+       =20
+        // =E3=80=8C=E3=82=AB=E3=83=B3=E3=83=88=E3=83=BC=
+=E3=83=AB=E3=83=80=E3=82=B9=E3=83=88=E3=80=8D=E3=81=AE=E3=82=88=E3=81=86=
+=E3=81=AA=E7=B2=92=E5=AD=90=E7=8A=B6=E3=81=AE=E8=A6=96=E8=A6=9A=E5=8A=B9=
+=E6=9E=9C=E3=82=92=E7=94=9F=E6=88=90=E3=81=97=E3=81=BE=E3=81=99
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0.5));
+       =20
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.=
+2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift);
+       =20
+        float intensity =3D pow(float(i + 1), 1.5);
+        // =E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E3=83=80=E3=82=B9=
+=E3=83=88=E3=81=AE=E6=98=8E=E3=82=8B=E3=81=95=E3=81=A8=E8=89=B2=E3=82=92=
+=E6=9C=80=E7=B5=82=E7=9A=84=E3=81=AA=E8=89=B2=E3=81=AB=E5=8A=A0=E7=AE=97=
+=E3=81=97=E3=81=BE=E3=81=99
+        color +=3D dustColor * dust * intensity=
+ * 0.2;
+       =20
+        // =E3=83=8D=E3=82=AA=E3=83=B3=E3=81=AE=
+=E3=82=88=E3=81=86=E3=81=AA=E7=B4=B0=E3=81=84=E7=B7=9A=E3=82=92=E6=8F=8F=
+=E7=94=BB=E3=81=97=E3=81=BE=E3=81=99
+        float line =3D 0.1 / abs(p.x +=
+ p.y + sin(t * 10.0 + float(i) + u_seed));
+        // =
+=E3=83=80=E3=82=B9=E3=83=88=E3=81=A8=E3=81=AF=E5=B0=91=E3=81=97=E8=89=B2=
+=E7=9B=B8=E3=82=92=E3=81=9A=E3=82=89=E3=81=97=E3=81=9F=E8=89=B2=E3=81=A7=
+=E7=B7=9A=E3=82=92=E6=8F=8F=E7=94=BB=E3=81=97=E3=80=81=E5=8A=A0=E7=AE=97=
+=E3=81=97=E3=81=BE=E3=81=99
+        color +=3D getRainbow(colorShift + 0.5)=
+ * line * 0.5;
+    }
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis()=
+ / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % =
+cycleDuration; // t =3D time
+  let loopSeed =3D floor(absoluteTime / =
+cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D =
+map(zoomPulse, 1, -1, 0.1, 3.0);
+
+  theShader.setUniform(&quot;u_resolution=
+&quot;, [width, height]);
+  theShader.setUniform(&quot;u_time&quot;, t);
+  theShader.setUniform(&quot;u_zoom&quot;, currentZoom);
+  theShader.setUniform(&quot;u_seed&quot;, float(loopSeed));
+ =20
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step =
+8</h3><p>=E3=81=93=E3=81=AE=E3=82=B9=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=
+=E3=81=AF=E3=80=81=E3=82=A2=E3=83=8B=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=
+=E3=83=B3=E3=81=AB=E5=9B=9E=E8=BB=A2=E5=8A=B9=E6=9E=9C=E3=82=92=E8=BF=BD=
+=E5=8A=A0=E3=81=97=E3=81=BE=E3=81=99=E3=80=82p5.js=E5=81=B4=E3=81=A7=
+=E6=99=82=E9=96=93=E3=81=AE=E7=B5=8C=E9=81=8E=E3=81=AB=E5=BF=9C=E3=81=98=
+=E3=81=A6=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=E3=82=92=E8=A8=88=E7=AE=97=
+=E3=81=97=E3=80=81`u_rotation`=E3=81=A8=E3=81=97=E3=81=A6=E3=82=B7=
+=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=E3=81=BE=
+=E3=81=99=E3=80=82=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E5=81=B4=
+=E3=81=A7=E3=81=AF=E3=80=81=E5=8F=97=E3=81=91=E5=8F=96=E3=81=A3=E3=81=9F=
+=E8=A7=92=E5=BA=A6=E3=82=92=E4=BD=BF=E3=81=A3=E3=81=A62D=E5=9B=9E=
+=E8=BB=A2=E8=A1=8C=E5=88=97=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=80=81=
+=E6=8F=8F=E7=94=BB=E3=81=95=E3=82=8C=E3=82=8B=E6=A8=A1=E6=A7=98=E5=85=A8=
+=E4=BD=93=E3=82=92=E5=9B=9E=E8=BB=A2=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99=
+=E3=80=82</p><pre style=3D"background:#f4f4f4;padding:8px;overflow-x:auto;f=
+ont-size:12px;">let theShader;
+
+const vert =3D `
+  precision highp float;
+  attribute vec3 aPosition;
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0);
+  }
+`;
+
+const frag =3D `
+  precision highp float;
+ =20
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform float u_zoom;
+  uniform float u_seed;
+  uniform float u_rotation;=
+ // p5.js=E3=81=8B=E3=82=89=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=E3=82=92=
+=E5=8F=97=E3=81=91=E5=8F=96=E3=82=8A=E3=81=BE=E3=81=99
+
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5);
+    vec3 b =3D vec3(0.5, 0.5, 0.5);
+    vec3 c =3D vec3(1.0, 1.0, 1.0);
+    vec3 d =3D vec3(0.0, 0.33, 0.67);
+    return a + b * cos(6.28318 * (c *=
+ t + d));
+  }
+
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p);
+    float a =3D atan(p.y, p.x) - 1.5708;
+    float tau =3D 6.28318;
+    a =3D mod(a, tau / n) - tau / (n * 2.0);
+    a =3D abs(a);
+    return vec2(cos(a), sin(a)) * r;
+  }
+
+  void main() {
+    vec2 p =3D (gl_FragCoord.xy * 2.0 - u_resolution.xy) / min(u_resolution=
+.y, u_resolution.x);
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors);
+
+    // --- =E3=81=93=E3=81=93=E3=81=8B=
+=E3=82=89=E5=9B=9E=E8=BB=A2=E5=87=A6=E7=90=86=E3=82=92=E8=BF=BD=E5=8A=A0 =
+---
+    // 2D=E5=9B=9E=E8=BB=A2=E8=A1=8C=E5=88=97=E3=82=92=E4=BD=BF=
+=E3=81=A3=E3=81=A6=E5=BA=A7=E6=A8=99=E7=B3=BB=E5=85=A8=E4=BD=93=E3=82=92=
+=E5=9B=9E=E8=BB=A2=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99
+    float cosR =3D cos(u_rotation);
+    float sinR =3D sin(u_rotation);
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * cosR);
+   =20
+    p *=3D u_zoom;
+   =20
+    float t =3D u_time * 0.05;
+    vec3 color =3D vec3(0.0);
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.=
+5) * 0.1, 0.8 + cos(u_seed * 0.7) * 0.1);
+    for(int i =3D 0; i &lt; 7; =
+i++) {
+        p =3D abs(p) / dot(p, p) - (shift + sin(t * 2.0 + u_seed) * =
+0.05);
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - =
+0.5));
+        float colorShift =3D t + float(i) * 0.1 + length(p) * 0.2 + =
+u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift);
+        float intensity =3D pow(float(i + 1), 1.5);
+        color +=3D dustColor * dust * intensity * 0.2;
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5;
+    }
+
+    gl_FragColor =3D vec4(color, 1.0);
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  pixelDensity(1);
+  theShader =3D createShader(vert, frag);
+}
+
+function draw() {
+  shader(theShader);
+ =20
+  let absoluteTime =3D millis() / 1000.0;
+  let cycleDuration =3D 78.5;
+  let t =3D absoluteTime % cycleDuration; // =
+t =3D time
+  let loopSeed =3D floor(absoluteTime / cycleDuration);
+  let zoomPulse =3D sin(t * 0.1);
+  let currentZoom =3D map(zoomPulse, 1, =
+-1, 0.1, 3.0);
+ =20
+  // --- =E3=81=93=E3=81=93=E3=81=8B=E3=82=89=
+=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=E3=81=AE=E8=A8=88=E7=AE=97=E3=82=92=
+=E8=BF=BD=E5=8A=A0 ---
+  let rotationAngle =3D 0.0;
+  let rotationStart =3D 47.12; // =E5=9B=9E=E8=BB=A2=E3=82=92=E9=96=8B=
+=E5=A7=8B=E3=81=99=E3=82=8B=E6=99=82=E9=96=93 (=E7=A7=92)
+  if (t &gt; rotationStart) {
+    randomSeed(loopSeed * 999);
+    let direction =3D random() &gt; 0.5 ? 1 : -1; // =
+=E5=9B=9E=E8=BB=A2=E6=96=B9=E5=90=91=E3=82=92=E3=83=A9=E3=83=B3=E3=83=80=
+=E3=83=A0=E3=81=AB=E6=B1=BA=E5=AE=9A
+    rotationAngle =3D direction * =
+map(t, rotationStart, 78.5, 0, PI * 0.5);=20
+  }
+
+  theShader.=
+setUniform(&quot;u_resolution&quot;, [width, height]);
+  theShader.setUniform(&quot;u_time&quot;, t);
+  theShader.=
+setUniform(&quot;u_zoom&quot;, currentZoom);
+  theShader.=
+setUniform(&quot;u_seed&quot;, float(loopSeed));
+  theShader.=
+setUniform(&quot;u_rotation&quot;, rotationAngle); // =
+=E8=A8=88=E7=AE=97=E3=81=97=E3=81=9F=E5=9B=9E=E8=BB=A2=E8=A7=92=E5=BA=A6=
+=E3=82=92=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E3=81=AB=E6=B8=A1=
+=E3=81=97=E3=81=BE=E3=81=99
+
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+</pre><h3>Step 9</h3><p>=E3=81=93=E3=81=AE=E6=9C=80=E7=B5=82=E3=82=B9=
+=E3=83=86=E3=83=83=E3=83=97=E3=81=A7=E3=81=AF=E3=80=81=E3=82=A2=E3=83=8B=
+=E3=83=A1=E3=83=BC=E3=82=B7=E3=83=A7=E3=83=B3=E3=81=AE=E6=BC=94=E5=87=BA=
+=E3=82=92=E4=BB=95=E4=B8=8A=E3=81=92=E3=80=81=E3=82=B3=E3=83=BC=E3=83=89=
+=E3=82=92=E5=AE=8C=E6=88=90=E3=81=95=E3=81=9B=E3=81=BE=E3=81=99=E3=80=82p5.=
+js=E5=81=B4=E3=81=A7=E3=83=95=E3=82=A7=E3=83=BC=E3=83=89=E3=82=A4=
+=E3=83=B3=E3=83=BB=E3=83=95=E3=82=A7=E3=83=BC=E3=83=89=E3=82=A2=E3=82=A6=
+=E3=83=88=E3=81=AE=E3=83=AD=E3=82=B8=E3=83=83=E3=82=AF=E3=82=92=E5=AE=9F=
+=E8=A3=85=E3=81=97=E3=80=81=E3=81=9D=E3=81=AE=E7=B5=90=E6=9E=9C=E3=82=92`u_=
+opacity`=E3=81=A8=E3=81=97=E3=81=A6=E3=82=B7=E3=82=A7=E3=83=BC=E3=83=80=
+=E3=83=BC=E3=81=AB=E6=B8=A1=E3=81=97=E3=81=BE=E3=81=99=E3=80=82=E3=82=B7=
+=E3=82=A7=E3=83=BC=E3=83=80=E3=83=BC=E5=81=B4=E3=81=A7=E3=81=AF=E7=94=BB=
+=E9=9D=A2=E3=81=AE=E7=AB=AF=E3=82=92=E6=9A=97=E3=81=8F=E3=81=99=E3=82=8B=
+=E3=83=B4=E3=82=A3=E3=83=8D=E3=83=83=E3=83=88=E5=8A=B9=E6=9E=9C=E3=81=AA=
+=E3=81=A9=E3=82=92=E8=BF=BD=E5=8A=A0=E3=81=97=E3=80=81=E6=9C=80=E7=B5=82=
+=E7=9A=84=E3=81=AA=E8=89=B2=E3=81=AB=E4=B8=8D=E9=80=8F=E6=98=8E=E5=BA=A6=
+=E3=82=92=E9=81=A9=E7=94=A8=E3=81=97=E3=81=A6=E3=80=81=E5=AE=8C=E6=88=90=
+=E3=81=A7=E3=81=99=E3=80=82</p><pre style=3D"background:#f4f4f4;padding:8px=
+;overflow-x:auto;font-size:12px;">let theShader; // Variable to store the =
+compiled shader program
+
+// Vertex shader: Handles the geometry layout on =
+the screen
+const vert =3D `
+  precision highp float; // Use high precision =
+for floating point numbers
+  attribute vec3 aPosition; // Receive the =
+vertex position from p5.js
+  void main() {
+    gl_Position =3D =
+vec4(aPosition, 1.0); // Map vertices to the full clip space
+  }
+`;
+
+// Fragment shader: Calculates the color and logic for every pixel
+const frag =3D `
+  precision highp float; // Use high precision for fractal=
+ calculations
+  uniform vec2 u_resolution; // The width and height of the =
+canvas
+  uniform float u_time; // Time variable that resets every loop =
+cycle
+  uniform float u_zoom; // Dynamic magnification factor from the draw=
+ loop
+  uniform float u_opacity; // Transparency level for the fade-in/out =
+effect
+  uniform float u_seed; // Unique seed value for each sequence =
+iteration
+  uniform float u_rotation; // Rotation angle sent from the p5.js=
+ draw loop
+
+  // Function to generate a smooth rainbow color palette
+  vec3 getRainbow(float t) {
+    vec3 a =3D vec3(0.5, 0.5, 0.5); // =
+Baseline brightness for the colors
+    vec3 b =3D vec3(0.5, 0.5, 0.5); // =
+Contrast/Intensity of the color waves
+    vec3 c =3D vec3(1.0, 1.0, 1.0); =
+// Frequency of the color oscillations
+    vec3 d =3D vec3(0.0, 0.33, 0.=
+67); // RGB phase offsets to create the rainbow
+    return a + b * cos(6.=
+28318 * (t + d)); // Standard cosine-based color palette
+  }
+
+  // Creates radial symmetry and ensures a vertex points upwards
+  vec2 fold(vec2 p, float n) {
+    float r =3D length(p); // Calculate the =
+distance from the center point
+    float a =3D atan(p.y, p.x) - 1.5708; // =
+Calculate angle and rotate by 90 deg (PI/2)
+    float tau =3D 6.28318; // =
+Constant representing 2 * PI (a full circle)
+    a =3D mod(a, tau / n) - =
+tau / (n * 2.0); // Partition the circle into n slices
+    a =3D abs(a); // Mirror the coordinates within each slice
+    return vec2(cos(a), sin(a)) * r; // Revert back to 2D Cartesian =
+coordinates
+  }
+
+  void main() {
+    // Normalize coordinates so the center=
+ is (0,0) and range is approx -1 to 1
+    vec2 p =3D (gl_FragCoord.xy * 2.0=
+ - u_resolution.xy) / min(u_resolution.y, u_resolution.x);
+   =20
+    // Determine the number of mirror planes (3 to 8) based on the seed
+    float numMirrors =3D 3.0 + mod(u_seed, 6.0);=20
+    p =3D fold(p, numMirrors); // Apply the upward-aligned radial symmetry
+
+    // Apply rotation to the coordinate space (the &quot;camera&quot; =
+rotation)
+    float cosR =3D cos(u_rotation); // Calculate cosine of the =
+rotation angle
+    float sinR =3D sin(u_rotation); // Calculate sine of the=
+ rotation angle
+    p =3D vec2(p.x * cosR - p.y * sinR, p.x * sinR + p.y * =
+cosR); // Standard 2D rotation matrix
+
+    p *=3D u_zoom; // Scale the =
+coordinate space by the current zoom level
+   =20
+    float t =3D u_time * =
+0.05; // Set a slow time constant for the animation
+    vec3 color =3D vec3(0.0); // Start with a black canvas
+   =20
+    // Create a unique positional shift for the fractal based on the seed
+    vec2 shift =3D vec2(0.8 + sin(u_seed * 1.5) * 0.1, 0.8 + cos(u_seed * 0=
+.7) * 0.1);
+
+    // Fractal loop: Iterate 7 times to create recursive =
+complexity
+    for(int i =3D 0; i &lt; 7; i++) {
+        // Fold the =
+coordinate space based on inversion and movement
+        p =3D abs(p) / =
+dot(p, p) - (shift + sin(t * 2.0 + u_seed) * 0.05);
+       =20
+        // Generate &quot;Cantor Dust&quot; visual particles using fract =
+logic
+        float dust =3D smoothstep(0.3, 0.0, length(fract(p * 2.0) - 0=
+.5));
+       =20
+        // Shift colors dynamically based on time, seed, =
+and distance
+        float colorShift =3D t + float(i) * 0.1 + length(p) * =
+0.2 + u_seed * 0.1;
+        vec3 dustColor =3D getRainbow(colorShift); // =
+Assign a rainbow hue
+       =20
+        float intensity =3D pow(float(i + =
+1), 1.5); // Increase light for deeper layers
+        color +=3D dustColor =
+* dust * intensity * 0.2; // Add dust glow to the total color
+       =20
+        // Render the neon transfinite lines using a specific thickness
+        float line =3D 0.1 / abs(p.x + p.y + sin(t * 10.0 + float(i) + =
+u_seed));
+        color +=3D getRainbow(colorShift + 0.5) * line * 0.5; // =
+Add lines with offset hue
+    }
+
+    color *=3D 0.8; // Apply a master =
+brightness multiplier
+    color *=3D smoothstep(5.0, 0.0, length(p)); // =
+Apply a soft vignette to the edges
+   =20
+    // Final output: Apply the =
+opacity factor for smooth transitions
+    gl_FragColor =3D vec4(color * =
+u_opacity, 1.0);=20
+  }
+`;
+
+function setup() {
+  createCanvas(windowWidth, =
+windowHeight, WEBGL); // Create a 3D context canvas
+  pixelDensity(1); // Set pixel density to 1 for consistent rendering
+  theShader =3D createShader(vert, frag); // Compile the shader code
+}
+
+function draw() {
+  shader(theShader); // Tell p5.js to use this specific =
+shader
+ =20
+  let absoluteTime =3D millis() / 1000.0; // Convert current =
+time to seconds
+ =20
+  let cycleDuration =3D 78.5; // Define the total =
+length of one sequence
+  let t =3D absoluteTime % cycleDuration; // =
+Calculate the current time within the loop. t =3D time
+ =20
+  let loopSeed =3D floor(absoluteTime / cycleDuration); // Track the number=
+ of cycles completed
+ =20
+  let zoomPulse =3D sin(t * 0.1); // Generate a =
+slow-moving sine wave for zooming
+  let currentZoom =3D map(zoomPulse, 1, =
+-1, 0.1, 3.0); // Map the sine wave to zoom levels (0.3 limit)
+
+  // --- Automatic Rotation Logic ---
+  let rotationAngle =3D 0; // =
+Initialize rotation angle to zero
+  let rotationStart =3D 47.12; // Start =
+rotation during the 2nd zoom-in (approx 47.1s)
+  if (t &gt; rotationStart) =
+{ // Check if we have passed the rotation threshold
+    randomSeed(loopSeed * 999); // Use loop seed to ensure consistent =
+randomness per cycle
+    let direction =3D random() &gt; 0.5 ? 1 : -1; // =
+Randomly choose clockwise or counter-clockwise
+    // Map time from the =
+start point to the end of the loop to an angle (0 to 90 degrees)
+    rotationAngle =3D direction * map(t, rotationStart, 78.5, 0, PI * 0.=
+5);=20
+  }
+ =20
+  let opacity =3D 0.0; // Set initial transparency to zero
+ =20
+  if (t &lt; 1.0) {
+    opacity =3D 0.0; // Keep the screen black for =
+the first second
+  } else if (t &lt; 16.0) {
+    opacity =3D map(t, 1.0, 16=
+.0, 0.0, 1.0); // Gradually fade in over 15 seconds
+  } else if (t &lt; 73.5) {
+    opacity =3D 1.0; // Keep full brightness =
+during the main sequence
+  } else if (t &lt; 78.5) {
+    opacity =3D map(t, 73.5, 78.5, 1.0, 0.0); // Fade out over the final 5 =
+seconds
+  }
+
+  // Set the uniform values to be sent to the GPU
+  theShader.setUniform(&quot;u_resolution&quot;, [width, height]); // Send =
+canvas dimensions
+  theShader.setUniform(&quot;u_time&quot;, t); // Send =
+the looping time value
+  theShader.setUniform(&quot;u_zoom&quot;, =
+currentZoom); // Send the current zoom state
+  theShader.=
+setUniform(&quot;u_opacity&quot;, opacity); // Send the current visibility =
+level
+  theShader.setUniform(&quot;u_seed&quot;, float(loopSeed)); // Send =
+the cycle-specific seed
+  theShader.setUniform(&quot;u_rotation&quot;, =
+rotationAngle); // Send the calculated rotation angle
+ =20
+  // Render a full-screen quad to display the shader
+  quad(-1, -1, 1, -1, 1, 1, -1, 1);=20
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Adjust canvas size if the =
+browser is resized
+}
+</pre>
+     =20
+----_NmP-5e3354c7616d0b86-Part_1--
